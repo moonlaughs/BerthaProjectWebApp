@@ -67,6 +67,29 @@ import axios, {
              else {selOutput.innerHTML = error;}
         })
     }
+
+    let allHButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("allHButton");
+    allHButton.addEventListener("click", getAllHealth);
+
+    function getAllHealth(): void{
+    let allHOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("allHOutput");
+    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health";
+    
+    axios.get<IHealth>(uri)
+    .then(function (response: AxiosResponse<IHealth[]>): void{
+        let result: string = "<table></th><th>Id</th><th>Blood pressure upper</th><th>Blood pressure down</th><th>Heart rate</th><th>Temperature</th><th>User Id</th><th>DateTime</th>"
+        response.data.forEach((allHealth: IHealth) => {
+        result += "<tr><td>" + allHealth.id + "</td><td>" + allHealth.bloodPressureUpper + "</td><td>" + allHealth.bloodPressureDown + "</td><td>" + allHealth.heartRate + "</td><td>" + allHealth.temperature + "</td><td>" + allHealth.userId + "</td><td>" + allHealth.dateTimeInfo + "</td></tr>"
+        });
+        result += "</table>"
+        allHOutput.innerHTML = result;
+    })
+    .catch (function(error: AxiosError): void {
+        if (error.response) {
+            allHOutput.innerHTML = error;
+        }
+    })  
+}
     
     let showSelectedUsersHealthDataButton : HTMLButtonElement = <HTMLButtonElement> document.getElementById("showSelectedUsersHealthData");
     showSelectedUsersHealthDataButton.addEventListener("click", showSelUserHealthData);
@@ -79,9 +102,9 @@ import axios, {
     
         axios.get<IHealth>(uri)
         .then(function(response:AxiosResponse<IHealth[]>): void {
-            let result: string = "<table><tr><th>Id</th><th>Blood pressure upper</th><th>Blood pressure down</th><th>Hearth rate</th><th>Temperature</th><th>Date</th>" 
+            let result: string = "<table></th><th>Blood pressure upper</th><th>Blood pressure down</th><th>Hearth rate</th><th>Temperature</th><th>Date</th>" 
                     response.data.forEach((userHealthData: IHealth) => {
-                result += "<tr><td>" + userHealthData.id + "</td><td>" + userHealthData.bloodPressureUpper + "</td><td>" + userHealthData.bloodPressureDown + "</td><td>" + userHealthData.heartRate + "</td><td>" + userHealthData.temperature + "</td><td>" + userHealthData.dateTimeInfo + "</td></tr>"
+                result += "<tr><td>" + userHealthData.bloodPressureUpper + "</td><td>" + userHealthData.bloodPressureDown + "</td><td>" + userHealthData.heartRate + "</td><td>" + userHealthData.temperature + "</td><td>" + userHealthData.dateTimeInfo + "</td></tr>"
             });
             result += "</table>"
             healthDataOutput.innerHTML = result;
