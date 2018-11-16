@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline'>
+  <title>The Bertha Project</title>
+  <link rel="stylesheet" type="text/css" href="bundle.css">
+  <style>
+    mark {
+      background-color:darkslateblue;
+      color:lavender;
+    }
+    table {
+     border-collapse: collapse;}
+     th {
+    background-color:darkslateblue;
+    color: white;} 
+    table, th, td {
+    border: 1px solid black;
+    margin: 10px} 
+    th, td {
+     padding: 7px;}
+    tr:nth-child(even) {background-color: powderblue} 
+  </style>
+</head>
+
+<body>
+  <h1 style="color:darkslateblue">Bertha project</h1>
+
+  <h4><mark>Get all environment data</mark></h4>
+  <button id = "allButton">Get all environment data</button>
+  <div id = "envOutput2"></div>
+  
+  <h3><mark>Get all environment data for a specific user</mark></h3> 
+  <button id = "getAllButton">Get Environmental for a user</button> 
+  <input id="envInput" placeholder="Type user's id"/>
+  <div id="envOutput"></div>
+
+  <h4><mark>Add new Environment data</mark></h4>
+  <button id = "addEnvButton">Add environment data</button>
+  <input id = "addOxInput" placeholder = "Oxygen"/>
+  <input id = "addCo2Input" placeholder="Co2"/>
+  <input id = "addCoInput" placeholder="Co"/>
+  <input id = "addPm25Input" placeholder="Pm25"/>
+  <input id = "addPm10Input" placeholder="Pm10"/>
+  <input id = "addOzInput" placeholder="Ozon"/>
+  <input id = "addDPInput" placeholder="Dust Particles"/>
+  <input id = "addNDInput" placeholder="Nitrogen Dioxide"/>
+  <input id = "addSDInput" placeholder="Sulphur Dioxide"/>
+  <input id = "addLonInput" placeholder="Longitute"/>
+  <input id = "addLanInput" placeholder="Latitute"/>
+  <input id = "addUIInput" placeholder="User Id"/>
+  <input id = "addDateInput" placeholder="Date"/>
+  <div id="envOutput"></div>
+
+<script src="EnvironmentPage.bundle.js"></script>
+</body>
+</html>

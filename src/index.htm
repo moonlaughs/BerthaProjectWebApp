@@ -2,15 +2,50 @@
 <html lang="en-US">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Coding Template</title>
+  <title>The Bertha Project</title>
   <link rel="stylesheet" type="text/css" href="bundle.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <style>
+  
+    table {
+     border-collapse: collapse;}
+     th {
+    background-color:darkslateblue;
+    color: white;} 
+    table, th, td {
+    border: 1px solid black;
+    margin: 10px} 
+    th, td {
+     padding: 7px;}
+    tr:nth-child(even) {background-color: powderblue} 
+  </style>
 </head>
 
 <body>
-  <h1>Webpack - TypeScript - Scss</h1>
-  <h2>TypeScript Hello World</h2>  
-  <div id="content"></div>
-    
-  <script src="bundle.js"></script>
+  <h1>The Bertha Project</h1>
+  <h2>Show all the users</h2>  
+  <div id="output"></div>
+  <button id="showAllUsersButton">Show all the users</button>
+  
+  <h2>Show a user by id</h2>
+  <input id="selInput" placeholder="Type user's id"/>
+  <button id="showSelectedUser">Show me user</button>
+  <div id="selOutput"></div>
+
+  <h2>Show a user's health data by id</h2>
+  <input id="healthDataInput" placeholder="Type user's id"/>
+  <button id="showSelectedUsersHealthData">Show me user's health data</button>
+  <div id="healthDataOutput" style="width: 500px"></div>
+
+  <h2>Add health data by id</h2>
+  <input id="bloodPressureUInput" placeholder="Type upper blood pressure"/>
+  <input id="bloodPressureDInput" placeholder="Type down blood pressure"/>
+  <input id="heartRateInput" placeholder="Type heart rate"/>
+  <input id="temperatureInput" placeholder="Type temperature"/>
+  <input id="userIdInput" placeholder="Type your User ID"/>
+  <button id="addHealthDataButton">Add this health data</button>
+  <div id="addHealthDataOutput" style="width: 500px"></div>
+  
+  <script src="index.bundle.js"></script>
 </body>
 </html>
