@@ -22,6 +22,9 @@ import axios, {
 
     let addButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById("addButton");
     addButton.addEventListener("click", AddUser);
+    
+    let backButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById("back");
+    backButton.addEventListener("click", () => window.location.href = 'http://localhost:3000')
 
     function AddUser(): void{
         let myfirstname: string = firstName.value;
@@ -36,19 +39,10 @@ import axios, {
         axios.post<IUser>(uri, {firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, age: myage, gender: mygender, typeOfUser: myTypeOfUser})
         .then(function(response: AxiosResponse){
             console.log(response.status + " " + response.statusText);
-            if (response.status === 200) {
                 window.location.href = 'http://localhost:3000';
-            }
-            if (response.status === "HTTP400")
-            {
-                alert("Check if all values are correct!");
-            }
-            else
-            {
-                alert("Check if all values are correct!");
-            }
         })
         .catch((error: AxiosError) => {
+            alert("Check if all values are correct!");
             console.log(error)
         })
     }
