@@ -35,6 +35,7 @@ function login(): void {
         })
         .catch(function (error: AxiosError): void {
             console.log(error);
+            alert("Wrong credentials")
         }
         )
 }
