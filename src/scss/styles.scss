@@ -1,3 +1,4 @@
+/*
 $fontColor: #0091aa;
 $colorHeading: #be4a14;
 #content  // div with id: content
@@ -12,4 +13,67 @@ h2
 
 h1{
     @extend h2;
+}
+*/
+body
+{
+    background-image: url("http://systemcall.info/wp-content/uploads/2012/09/blurred-1600x900-blue-stock-hd-9710.jpg");
+    background-attachment: center;
+    text-align:center;
+    color:lavender;
+    font-family: 'Montserrat', sans-serif;
+
+    
+}
+p
+{
+    border: 1px;
+    color: lavender;
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+h1
+{
+    text-align:center;
+    /*background-color: darkslateblue;*/
+    color:lavender;
+    font-family: 'Montserrat', sans-serif;
+ }
+
+ button
+ {
+    background-color:#0B3861;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    
+ }
+ input
+ {
+     widows: 30px;
+     height: 13px;
+     border: #071019;
+     opacity: 0.5;
+     padding: 5px;
+ }
+ mark
+ {
+    font-family: 'Montserrat', sans-serif;
+ }
+ h1
+ {
+    font-family: 'Montserrat', sans-serif;
+
+ }
+ h2
+{
+    font-family: 'Montserrat', sans-serif;
+
 }
