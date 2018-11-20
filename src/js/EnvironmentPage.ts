@@ -125,3 +125,51 @@ function addEnvData(): void{
          else {envOutput.innerHTML = error;}
      })
 }
+
+let EDId: HTMLInputElement = <HTMLInputElement>document.getElementById("EDId");
+let cuserIdInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cuserIdInput");
+let cOx: HTMLInputElement = <HTMLInputElement>document.getElementById("cOx");
+let cCo2: HTMLInputElement = <HTMLInputElement>document.getElementById("cCo2");
+let cco: HTMLInputElement = <HTMLInputElement>document.getElementById("cco");
+let cpm25: HTMLInputElement = <HTMLInputElement>document.getElementById("cpm25");
+let cpm10: HTMLInputElement = <HTMLInputElement>document.getElementById("cpm10");
+let cOzone: HTMLInputElement = <HTMLInputElement>document.getElementById("cOzone");
+let cdust: HTMLInputElement = <HTMLInputElement>document.getElementById("cdust");
+let cnit: HTMLInputElement = <HTMLInputElement>document.getElementById("cnit");
+let csul: HTMLInputElement = <HTMLInputElement>document.getElementById("csul");
+let clongitude: HTMLInputElement = <HTMLInputElement>document.getElementById("clongitude");
+let clatitude: HTMLInputElement = <HTMLInputElement>document.getElementById("clatitude");
+//let cdateTimeInfoInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cdateTimeInfoInput");
+let changeEnvironmentDataButton: HTMLInputElement = <HTMLInputElement>document.getElementById("changeEnvironmentDataButton");
+let changeEnvironmentDataOutput: HTMLInputElement = <HTMLInputElement>document.getElementById("changeEnvironmentDataOutput");
+changeEnvironmentDataButton.addEventListener("click", changeEnvironment);
+
+function changeEnvironment() : void {
+    let recordId: number = Number(EDId.value);
+    let ox: number = Number(cOx.value);
+    let co2: number = Number(cCo2.value);
+    let co: number = Number(cco.value);
+    let pm25: number = Number(cpm25.value);
+    let pm10: number = Number(cpm10.value);
+    let ozone: number = Number(cOzone.value);
+    let dust: number = Number(cdust.value);
+    let nit: number = Number(cnit.value);
+    let sul: number = Number(csul.value);
+    let longi: number = Number(clongitude.value);
+    let lati: number = Number(clatitude.value);
+    let usersId: number = Number(cuserIdInput.value);
+    //let datetime: number = Number(cdateTimeInfoInput.value);
+    let myDate : Date = new Date();
+    let hours : number = myDate.getHours();
+    let dTII : Date = new Date(myDate.getFullYear(), myDate.getMonth(), myDate.getDate(), (hours + 1), myDate.getMinutes(), myDate.getSeconds());
+    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/environment/" + recordId;
+    axios.put<IEnvironment>(uri, {oxygen : ox, co2 : co2, co : co, pm25 : pm25, pm10 : pm10, ozon : ozone, dustParticles: dust, nitrogenDioxide: nit, sulphurDioxide: sul, longitude: longi, latitude: lati, userId: usersId, dateTimeInfo: dTII})
+    .then ((response:AxiosResponse) => {
+        changeEnvironmentDataOutput.innerHTML = "Response: " + response.status + " " + response.statusText + "\t";
+        changeEnvironmentDataOutput.innerHTML += "The environment data is changed!"})
+     .catch(function(error : AxiosError) : void {
+         if (error.response){
+            changeEnvironmentDataOutput.innerHTML = error;}
+         else {changeEnvironmentDataOutput.innerHTML = error;}
+     })
+ }
