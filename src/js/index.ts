@@ -70,26 +70,97 @@ import axios, {
     
     let showSelectedUsersHealthDataButton : HTMLButtonElement = <HTMLButtonElement> document.getElementById("showSelectedUsersHealthData");
     showSelectedUsersHealthDataButton.addEventListener("click", showSelUserHealthData);
+    let healthDataOutput : HTMLOutputElement = <HTMLOutputElement> document.getElementById("healthDataOutput");
+  
+    function addToDOM(response: AxiosResponse<IHealth[]>) : void {
+        let tElement : HTMLTableElement = document.createElement<"table">("table");
+        healthDataOutput.appendChild(tElement)  
+    
+        let trElement: HTMLTableRowElement = document.createElement<"tr">("tr");
+    
+        let thElement: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        thElement.innerHTML = "User's Id";
+        trElement.appendChild(thElement);
+        let th1Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th1Element.innerHTML = "Upper blood pressure";
+        trElement.appendChild(th1Element);
+        let th2Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th2Element.innerHTML = "Down blood pressure";
+        trElement.appendChild(th2Element);
+        let th3Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th3Element.innerHTML = "Heart rate";
+        trElement.appendChild(th3Element);
+        let th4Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th4Element.innerHTML = "Temperature";
+        trElement.appendChild(th4Element);
+        let th5Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th5Element.innerHTML = "Date";
+        trElement.appendChild(th5Element);
+    
+        tElement.appendChild(trElement)
+    
+        let updateInput : HTMLInputElement = <HTMLInputElement> document.getElementById("updateInput");
+    
+        response.data.forEach((userHealthData: IHealth) => {
+    
+            let tr2Element: HTMLTableRowElement = document.createElement<"tr">("tr");
+          
+            let tdElement: HTMLTableDataCellElement = document.createElement<"td">("td");
+            tdElement.innerHTML = userHealthData.userId.toString();
+            tr2Element.appendChild(tdElement);
+    
+            let td2Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td2Element.innerHTML = userHealthData.bloodPressureUpper.toString();
+            tr2Element.appendChild(td2Element);
+            let td3Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td3Element.innerHTML = userHealthData.bloodPressureDown.toString();
+            tr2Element.appendChild(td3Element);
+            let td4Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td4Element.innerHTML = userHealthData.heartRate.toString();
+            tr2Element.appendChild(td4Element);
+            let td5Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td5Element.innerHTML = userHealthData.temperature.toString();
+            tr2Element.appendChild(td5Element);
+            let td6Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td6Element.innerHTML = userHealthData.dateTimeInfo.toString();
+            tr2Element.appendChild(td6Element);
+    
+            tElement.appendChild(tr2Element)
+    
+            // tooltip effect, not implemented (yet)
+            // https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip
+            tr2Element.addEventListener("click", () => {
+                console.log(userHealthData.userId);
+                // text string!
+                // ++ detailContent.innerHTML = bid.item + "<br /> " + bid.price;
+                cHealthDataInput.placeholder = userHealthData.id.toString();
+                cuserIdInput.placeholder = userHealthData.userId.toString();
+                cbloodPressureUInput.placeholder = userHealthData.bloodPressureUpper.toString();
+                cbloodPressureDInput.placeholder = userHealthData.bloodPressureDown.toString();
+                cheartRateInput.placeholder = userHealthData.heartRate.toString();
+                ctemperatureInput.placeholder = userHealthData.temperature.toString();
+                cdateTimeInfoInput.placeholder = userHealthData.dateTimeInfo.toString();
+                tr2Element.style.backgroundColor = "red"; // how to unset color?
+                //deleteButton.style.display = "block";
+                //deleteButton.addEventListener("click", () => {
+                //    deleteComment(comment.id);
+                //});
+            });
+        });
+    }
     
     function showSelUserHealthData() : void {
         let healthDataInput : HTMLInputElement = <HTMLInputElement> document.getElementById("healthDataInput");
-        let healthDataOutput : HTMLOutputElement = <HTMLOutputElement> document.getElementById("healthDataOutput");
         let id: string = healthDataInput.value;
         let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + id + "/health";
-    
-        axios.get<IHealth>(uri)
-        .then(function(response:AxiosResponse<IHealth[]>): void {
-            let result: string = "<table><tr><th>Id</th><th>Blood pressure upper</th><th>Blood pressure down</th><th>Hearth rate</th><th>Temperature</th><th>Date</th>" 
-                    response.data.forEach((userHealthData: IHealth) => {
-                result += "<tr><td>" + userHealthData.id + "</td><td>" + userHealthData.bloodPressureUpper + "</td><td>" + userHealthData.bloodPressureDown + "</td><td>" + userHealthData.heartRate + "</td><td>" + userHealthData.temperature + "</td><td>" + userHealthData.dateTimeInfo + "</td></tr>"
-            });
-            result += "</table>"
-            healthDataOutput.innerHTML = result;
+        axios.get<IHealth[]>(uri)
+        .then(function(response : AxiosResponse<IHealth[]>) : void {
+           addToDOM(response)
         })
-        .catch (function (error: AxiosError): void {
-             if (error.response) {
-                 healthDataOutput.innerHTML = error;}
-             else {healthDataOutput.innerHTML = error;}
+        .catch(function(error : AxiosError) : void {
+            if (error.response){
+                healthDataOutput.innerHTML = error;}
+            else {healthDataOutput.innerHTML = error;}
         })
     }
     
@@ -122,3 +193,36 @@ import axios, {
             else {addHealthDataOutput.innerHTML = error;}
         })
     }
+
+let cHealthDataInput : HTMLInputElement = <HTMLInputElement> document.getElementById("cHealthDataInput");
+let cuserIdInput : HTMLInputElement = <HTMLInputElement> document.getElementById("cuserIdInput");
+let cbloodPressureUInput : HTMLInputElement = <HTMLInputElement> document.getElementById("cbloodPressureUInput");
+let cbloodPressureDInput : HTMLInputElement = <HTMLInputElement> document.getElementById("cbloodPressureDInput");
+let cheartRateInput : HTMLInputElement = <HTMLInputElement> document.getElementById("cheartRateInput");
+let ctemperatureInput : HTMLInputElement = <HTMLInputElement> document.getElementById("ctemperatureInput");
+let cdateTimeInfoInput : HTMLInputElement = <HTMLInputElement> document.getElementById("cdateTimeInfoInput");
+let changeHealthDataOutput : HTMLOutputElement = <HTMLOutputElement> document.getElementById("changeHealthDataOutput");
+let changeHealthDataButton : HTMLButtonElement = <HTMLButtonElement> document.getElementById("changeHealthDataButton");
+changeHealthDataButton.addEventListener("click", changeHealthData);
+
+function changeHealthData() : void {
+    let id : number = Number(cHealthDataInput.value);
+    let bPUI : number = Number(cbloodPressureUInput.value);
+    let bPDI : number = Number(cbloodPressureDInput.value);
+    let hRI : number = Number(cheartRateInput.value);
+    let tI : number = Number(ctemperatureInput.value);
+    let uII : number = Number(cuserIdInput.value);
+    let myDate : Date = new Date();
+    let hours : number = myDate.getHours();
+    let dTII : Date = new Date(myDate.getFullYear(), myDate.getMonth(), myDate.getDate(), (hours + 1), myDate.getMinutes(), myDate.getSeconds());
+    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health/" + id;
+    axios.put<IHealth>(uri, {bloodPressureUpper : bPUI, bloodPressureDown : bPDI, heartRate : hRI, temperature : tI, userId : uII, dateTimeInfo : dTII})
+    .then ((response:AxiosResponse) => {
+     changeHealthDataOutput.innerHTML = "Response: " + response.status + " " + response.statusText + "\t";
+     changeHealthDataOutput.innerHTML += "The health data is changed!"})
+     .catch(function(error : AxiosError) : void {
+         if (error.response){
+             changeHealthDataOutput.innerHTML = error;}
+         else {changeHealthDataOutput.innerHTML = error;}
+     })
+ }
