@@ -6,56 +6,58 @@
     <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline'>
     <title>The Bertha Project</title>
     <link rel="stylesheet" type="text/css" href="bundle.css">
+
     <style>
-        mark {
-            background-color: darkslateblue;
-            color: lavender;
-        }
+       a
+       {
+        position:relative;
+        top:-60px;
+        left:-600px;
+       }
+       body
+       {
+           padding: 110px;
+       }
+       input
+       {
+         width: 210px;
+         height: 14px;
+         border: #071019;
+         opacity: 0.5;
+         padding: 5px;
+         border-radius:8px;
+         margin-bottom:10px;
+       }
+       
 
-        table {
-            border-collapse: collapse;
-        }
-
-        th {
-            background-color: darkslateblue;
-            color: white;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            margin: 10px
-        }
-
-        th,
-        td {
-            padding: 7px;
-        }
-
-        tr:nth-child(even) {
-            background-color: powderblue
-        }
     </style>
 </head>
 
 <body>
-    <h2><mark>SIGN UP</mark></h2>
+    <a href="http://localhost:3000/">
+     <button id="back">BACK</button>
+    </a>
+    <h2>SIGN UP</h2>
+
     <input id="firstName" placeholder="Type first name" />
+    <br>
     <input id="lastName" placeholder="Type last name" />
+    <br>
     <input id="username" placeholder="Type username" />
-    <input id="pass" placeholder="Type password" />
-    <input id="age" placeholder="Type age" />
+    <br>
+    <input id="pass" type="password" placeholder="Type password" />
+    <br>
+    <!-----<input id="eMail" placeholder="Type e-mail" />
+    <br>
+    -->
+    <input id="age" type="number" min="1970" max="2018" step="1" placeholder="Select year of birth" />
+    <br>
     <select id="selectGender">
         <option value="F">female</option>
         <option value="M">male</option>
     </select>
-    <button id="addButton">Finish</button>
-
-
-    <a href="http://localhost:3000/">
-        <button id="back">BACK</button>
-    </a>
+    <br>
+    <button id="addButton">FINISH</button>
 
     <script src="Signup.bundle.js"></script>
 </body>

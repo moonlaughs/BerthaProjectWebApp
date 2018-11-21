@@ -28,35 +28,33 @@ html, body{
   }
 body
 {
-    /*background-image: url("http://systemcall.info/wp-content/uploads/2012/09/blurred-1600x900-blue-stock-hd-9710.jpg"); */
-    background-image: url("http://systemcall.info/wp-content/uploads/2012/09/blurred-1600x900-blue-stock-hd-9710.jpg");
+   /* background-image: url("http://systemcall.info/wp-content/uploads/2012/09/blurred-1600x900-blue-stock-hd-9710.jpg");*/
+    background-image: url("https://i.imgur.com/dOIVNNm.jpg");
     background-attachment: center;
     text-align:center;
     color:lavender;
     font-family: 'Montserrat', sans-serif;
     
 }
-p
+select
 {
-    border: 1px;
-    color: lavender;
-    font-size: 40px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    height:20px;
+    width: 220px;
+    position: center;
+    border: #071019;
+    opacity: 0.5;
 
+    border-radius:8px;
+    
+}
+select.option
+{
+    opacity:0.5;
 }
 
-h1
-{
-    text-align:center;
-    /*background-color: darkslateblue;*/
-    color:lavender;
-    font-family: 'Montserrat', sans-serif;
- }
-
- button
+button
  {
-    background-color:#0B3861;
+    background-color:#071019;
     border: none;
     color: white;
     padding: 10px 15px;
@@ -64,27 +62,61 @@ h1
     text-decoration: none;
     display: inline-block;
     font-size: 10px;
-    
+    border-radius:15px;
+    margin: 4px 2px;
+    transition:0.3s;
+ }
+
+ button:hover
+ {
+     background-color: #0B3861;
+     color:lavender;
  }
  input
  {
      widows: 30px;
-     height: 17px;
+     height: 20px;
      border: #071019;
      opacity: 0.5;
      padding: 5px;
+     border-radius:8px;
+     margin-bottom: 10px; 
  }
- mark
- {
-    font-family: 'Montserrat', sans-serif;
- }
+
  h1
  {
     font-family: 'Montserrat', sans-serif;
-
+    font-size: 20px;
+    
  }
- h2
-{
-    font-family: 'Montserrat', sans-serif;
 
-}
+ p
+ {
+     border: 1px;
+     color: lavender;
+     font-size: 10px;
+     text-align: center;
+     font-family: 'Montserrat', sans-serif;
+ 
+ }
+ 
+ h1
+ {
+     text-align:center;
+     /*background-color: darkslateblue;*/
+     color:lavender;
+     font-family: 'Montserrat', sans-serif;
+  }
+.header 
+{
+    padding: 60px;
+    text-align: center;
+    background-color: #071019;
+    opacity:0.7;
+    color: white;
+    font-size: 10px;
+  }
+
+
+
+ 
