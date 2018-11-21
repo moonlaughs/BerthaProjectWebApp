@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline'>
+    <title>The Bertha Project</title>
+    <link rel="stylesheet" type="text/css" href="bundle.css">
+    <style>
+        mark {
+            background-color: darkslateblue;
+            color: lavender;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: darkslateblue;
+            color: white;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            margin: 10px
+        }
+
+        th,
+        td {
+            padding: 7px;
+        }
+
+        tr:nth-child(even) {
+            background-color: powderblue
+        }
+    </style>
+</head>
+
+<body>
+    <h2><mark>SIGN UP</mark></h2>
+    <input id="firstName" placeholder="Type first name" />
+    <input id="lastName" placeholder="Type last name" />
+    <input id="username" placeholder="Type username" />
+    <input id="pass" placeholder="Type password" />
+    <input id="age" placeholder="Type age" />
+    <select id="selectGender">
+        <option value="F">female</option>
+        <option value="M">male</option>
+    </select>
+    <button id="addButton">Finish</button>
+
+
+    <a href="http://localhost:3000/">
+        <button id="back">BACK</button>
+    </a>
+
+    <script src="Signup.bundle.js"></script>
+</body>
+
+</html>
