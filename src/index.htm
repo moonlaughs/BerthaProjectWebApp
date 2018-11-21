@@ -5,46 +5,45 @@
   <title>The Bertha Project</title>
   <link rel="stylesheet" type="text/css" href="bundle.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-      mark {
-        background-color:darkslateblue;
-        color:lavender;
-      }
       table {
        border-collapse: collapse;}
        th {
-      background-color:darkslateblue;
+      background-color:#0B3861;
       color: white;} 
       table, th, td {
-      border: 1px solid black;
-      margin: 10px} 
+      border: 1px solid #071019;
+      margin: 10px;
+      font-size: 12px;} 
+      
       th, td {
        padding: 7px;}
-      tr:nth-child(even) {background-color: powderblue} 
+      tr:nth-child(even) {background-color:#0B243B; opacity: 70%;} 
     </style>
 </head>
 
 <body>
-  <h1 style="color:darkslateblue">Bertha project</h1>
-  <h2><mark>Show all the users</mark></h2>  
+  <h1>Bertha project</h1>
+  <h2>Show all the users</h2>  
   <div id="output"></div>
   <button id="showAllUsersButton">Show all the users</button>
   
-  <h2><mark>Show a user by id</mark></h2>
+  <h2>Show a user by id</h2>
   <input id="selInput" placeholder="Type user's id"/>
   <button id="showSelectedUser">Show me user</button>
   <div id="selOutput"></div>
 
- <h2><mark>Get all health data</mark></h2>
+ <h2>Get all health data</h2>
  <button id = "allHButton">Get all health data</button>
  <div id = "allHOutput"></div>
 
-  <h2><mark>Show a user's health data by id</mark></h2>
+  <h2>Show a user's health data by id</h2>
   <input id="healthDataInput" placeholder="Type user's id"/>
   <button id="showSelectedUsersHealthData">Show me user's health data</button>
   <div id="healthDataOutput" style="width: 500px"></div>
 
-  <h2><mark>Add health data by id</mark></h2>
+  <h2>Add health data by id</h2>
   <input id="bloodPressureUInput" placeholder="Type upper blood pressure"/>
   <input id="bloodPressureDInput" placeholder="Type down blood pressure"/>
   <input id="heartRateInput" placeholder="Type heart rate"/>
@@ -53,7 +52,7 @@
   <button id="addHealthDataButton">Add this health data</button>
   <div id="addHealthDataOutput" style="width: 500px"></div>
 
-  <h2><mark>Change health data by id</mark></h2>
+  <h2>Change health data by id</h2>
   <input id="cHealthDataInput" placeholder="Type record's Id"/>
   <input id="cuserIdInput" placeholder="Type user's Id"/>
   <input id="cbloodPressureUInput" placeholder="Type upper blood pressure"/>
