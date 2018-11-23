@@ -17,7 +17,6 @@ interface IUser {
 
 let usernameInput: HTMLInputElement = <HTMLInputElement>document.getElementById("username");
 let passwordInput: HTMLInputElement = <HTMLInputElement>document.getElementById("password");
-let selectType: HTMLSelectElement = <HTMLSelectElement> document.getElementById("selectType");
 
 let loginButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("loginButton");
 loginButton.addEventListener("click", login);
@@ -44,5 +43,4 @@ function login(): void {
     console.log(error);
     alert("Wrong credentials")
 }
-        )
-}
+)}
