@@ -192,7 +192,7 @@ google.charts.setOnLoadCallback(healthDataChart);
                     bold: true
                   },
                   backgroundColor: 'transparent', 
-                  curveType: 'function',
+                  curveType: 'none',
                   lineWidth: 4,
                   columnColor: 'white'
             };
