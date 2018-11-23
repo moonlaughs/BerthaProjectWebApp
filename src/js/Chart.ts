@@ -94,7 +94,7 @@ function envDataChart(): void {
             textStyle: {
               color: 'white',
               fontSize: 16,
-              fontName: 'Arial',
+              italic: true,
               bold: true
             }
           },
@@ -104,20 +104,21 @@ function envDataChart(): void {
             textStyle: {
               color: 'white',
               fontSize: 16,
+              italic: true, 
               bold: true
             }
           },
           titleTextStyle: {
             color: 'white',
             fontSize: 16,
+            italic: true,
             bold: true
           },
           backgroundColor: 'transparent', 
-          curveType: 'function',
-          lineWidth: 4,
-          columnColor: 'white'
+          curveLine: 'none',
+          lineWidth: 3,
+          legendTextStyle: {color: 'white', italic: true}
         };
-  
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
         chart.draw(data, options);
     })
@@ -173,7 +174,7 @@ google.charts.setOnLoadCallback(healthDataChart);
                     textStyle: {
                       color: 'white',
                       fontSize: 16,
-                      fontName: 'Arial',
+                      italic: true,
                       bold: true
                     }
                   },
@@ -183,18 +184,21 @@ google.charts.setOnLoadCallback(healthDataChart);
                     textStyle: {
                       color: 'white',
                       fontSize: 16,
+                      italic: true, 
                       bold: true
                     }
                   },
                   titleTextStyle: {
                     color: 'white',
                     fontSize: 16,
+                    italic: true,
                     bold: true
                   },
                   backgroundColor: 'transparent', 
                   curveType: 'none',
-                  lineWidth: 4,
-                  columnColor: 'white'
+                  lineWidth: 3,
+                  dataColor: 'white',
+                  legendTextStyle: {color: 'white', italic: true}
             };
       
             var chart = new google.visualization.LineChart(document.getElementById('curve_Chart'));
