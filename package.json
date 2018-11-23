@@ -27,6 +27,8 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "@types/google.visualization": "0.0.46",
+    "axios": "^0.18.0",
+    "d3": "^5.7.0"
   }
 }

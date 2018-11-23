@@ -14,7 +14,8 @@ module.exports = {
     index: ['./src/index.htm', './src/scss/styles.scss', './src/js/index.ts'],
     EnvironmentPage: ['./src/EnvironmentPage.html', './src/scss/styles.scss', './src/js/EnvironmentPage.ts'],
     Signup: ['./src/SignupPage.html', './src/scss/styles.scss', './src/js/Signup.ts'],
-    Homepage: ['./src/Homepage.html', './src/scss/styles.scss', './src/js/Homepage.ts']
+    Homepage: ['./src/Homepage.html', './src/scss/styles.scss', './src/js/Homepage.ts'],
+    Chart: ['./src/Chart.html', './src/scss/styles.scss', './src/js/Chart.ts']
   },
   module: {
     // rules webpack should follow when watching...

@@ -34,10 +34,18 @@ function showAllUsers(): void {
         .then(function (response: AxiosResponse<IUser[]>): void {
             let result: string = "<ol>";
             response.data.forEach((user: IUser) => {
-                result += "<li>" + user.firstName + " " + user.lastName + "</li>"
+                result += "<li>" + user.firstName + " " + user.lastName + `<button id='goToChart${ user.id }'>Details</button>` + "</li>"
+          
             });
             result += "</ol>";
             output.innerHTML = result;
+            response.data.forEach((user: IUser) => {
+                let gotoChartButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById(`goToChart${ user.id }`);
+                gotoChartButton.addEventListener("click", function(){ 
+                    // pass in `this` (the element), and someOtherVar
+                    goToChart(user.id); 
+                } );
+            });
         })
         .catch(function (error: AxiosError): void {
             if (error.response) {
@@ -45,9 +53,10 @@ function showAllUsers(): void {
             }
             else { output.innerHTML = error; }
         });
+
 }
 
-let showSelectedUser: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showSelectedUser");
+/*let showSelectedUser: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showSelectedUser");
 showSelectedUser.addEventListener("click", showUser);
 
 function showUser(): void {
@@ -57,6 +66,23 @@ function showUser(): void {
     let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + id;
 
     axios.get<IUser>(uri)
+    }*/
+    
+    let showSelectedUser:HTMLButtonElement = <HTMLButtonElement> document.getElementById("showSelectedUser");
+    showSelectedUser.addEventListener("click", showUser);
+    
+    function goToChart(id: Number): void{
+        
+        window.location.href = 'http://localhost:3000/Chart.html?id=' + id;
+    }
+
+    function showUser(): void {
+        let selOutput: HTMLDivElement = <HTMLDivElement> document.getElementById("selOutput");
+        let selInput : HTMLInputElement = <HTMLInputElement> document. getElementById("selInput");
+        let id: string = selInput.value;
+        let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + id;
+    
+        axios.get<IUser>(uri)
         .then(function (response: AxiosResponse<IUser>): void {
             console.log(response.data);
             let result: string = response.data.firstName;
