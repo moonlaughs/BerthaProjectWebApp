@@ -33,10 +33,18 @@ import axios, {
         .then(function(response:AxiosResponse<IUser[]>): void {
             let result: string = "<ol>";
             response.data.forEach((user: IUser) => {
-                result += "<li>" + user.firstName + " " + user.lastName + "</li>"
+                result += "<li>" + user.firstName + " " + user.lastName + `<button id='goToChart${ user.id }'>Details</button>` + "</li>"
+          
             });
             result += "</ol>";
             output.innerHTML = result;
+            response.data.forEach((user: IUser) => {
+                let gotoChartButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById(`goToChart${ user.id }`);
+                gotoChartButton.addEventListener("click", function(){ 
+                    // pass in `this` (the element), and someOtherVar
+                    goToChart(user.id); 
+                } );
+            });
         })
         .catch (function (error: AxiosError): void {
             if (error.response) {
@@ -48,6 +56,11 @@ import axios, {
     let showSelectedUser:HTMLButtonElement = <HTMLButtonElement> document.getElementById("showSelectedUser");
     showSelectedUser.addEventListener("click", showUser);
     
+    function goToChart(id: Number): void{
+        
+        window.location.href = 'http://localhost:3000/Chart.html?id=' + id;
+    }
+
     function showUser(): void {
         let selOutput: HTMLDivElement = <HTMLDivElement> document.getElementById("selOutput");
         let selInput : HTMLInputElement = <HTMLInputElement> document. getElementById("selInput");
