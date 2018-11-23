@@ -71,11 +71,12 @@ module.exports = {
     new BrowserSyncPlugin({
       // browse to http://localhost:3000/ during development,
       // ./public directory is being served
-      host: 'localhost',
+      publicPath: 'https://theberthathing.azurewebsites.net',
+      //host: 'https://theberthathing.azurewebsites.net',
       reload: true,
-      port: 3000,
+      //port: 3000,
       files: ["*.htm", "*.html", "scss/*.*"],
-      index: 'LogInPage.html',
+      index: 'LoginPage.html',
       server: { baseDir: ['dist'] }
     })
   ]
