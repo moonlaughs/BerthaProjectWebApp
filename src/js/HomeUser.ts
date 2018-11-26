@@ -1,20 +1,36 @@
-import axios,
-{
-    AxiosResponse,
-    AxiosError
-} from "../../node_modules/axios";
+let myFrame: HTMLFrameElement = <HTMLFrameElement>document.getElementById("myFrame");
+let healthButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("healthButton");
+let envirnmentButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("environmentButton");
 
-let myFrame: HTMLFrameElement = <HTMLFrameElement> document.getElementById("myFrame");
-let healthButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById("healthButton");
-let envirnmentButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById("environmentButton");
+healthButton.addEventListener("click", getHealth);
+envirnmentButton.addEventListener("click", getEnvironment);
 
-//myFrame.hidden = true;
+function getHealth(): void {
 
-//healthButton.addEventListener("click", () => {
-//    myFrame.hidden = false;
-//})
+    var regex = /[?&]([^=#]+)=([^&#]*)/g,
+            url = window.location.href;
+        var params: any = {},
+            match;
+        while (match = regex.exec(url)) {
+            params[match[1]] = match[2];
+        
 
-//envirnmentButton.addEventListener("click", () => {
-//    myFrame.src = "http://localhost:3000/EnvironmentPage.html";
-//    myFrame.contentWindow.URL = "http://localhost:3000/index.htm";
-//})
+
+        let uri: string = "http://localhost:3000/HealthUser.html?id=" + params.id;
+        myFrame.src = uri;
+}}
+
+function getEnvironment(): void {
+
+    var regex = /[?&]([^=#]+)=([^&#]*)/g,
+            url = window.location.href;
+        var params: any = {},
+            match;
+        while (match = regex.exec(url)) {
+            params[match[1]] = match[2];
+        
+
+
+        let uri: string = "http://localhost:3000/EnvironmentUser.html?id=" + params.id;
+        myFrame.src = uri;
+}}

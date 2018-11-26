@@ -23,20 +23,25 @@
 <body>
 
         <div>The Bertha Thing</div>
-        <button id="healthButton" onclick="setURL('https://theberthathing.azurewebsites.net/Chart.html?id=1')">HEALTH</button>
-        <button id="environmentButton" onclick="setURL('https://thebertharestconsumer20181031102055.azurewebsites.net/EnvironmentPage.html')">ENVIRONMENT</button>
-        <button>SETTINGS</button>
+        <button id="healthButton">HEALTH</button>
+        <button id="environmentButton">ENVIRONMENT</button>
+        <button id="set">SETTINGS</button>
         <iframe id="myFrame" width="100%" height="100%" default-src="shttps://thebertharestconsumer20181031102055.azurewebsites.net/index.htm"></iframe>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script>
+        
+        <!--different way of doing sth-->
+        <!--<button id="healthButton" onclick="setURL('http://localhost:3000/HealthUser.html?id=1')">HEALTH</button>-->
+        <!--<script>
             function setURL(url){
                 document.getElementById('myFrame').src = url;
             }
-        </script>
+        </script>-->
+
+<script src="HomeUser.bundle.js"></script>
 </body>
     
 </html>

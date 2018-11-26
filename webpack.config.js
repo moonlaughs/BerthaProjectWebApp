@@ -74,7 +74,7 @@ module.exports = {
       // browse to http://localhost:3000/ during development,
       // ./public directory is being served
       publicPath: 'https://theberthathing.azurewebsites.net',
-      //host: 'https://theberthathing.azurewebsites.net',
+      host: 'localhost',
       reload: true,
       //port: 3000,
       files: ["*.htm", "*.html", "scss/*.*"],
