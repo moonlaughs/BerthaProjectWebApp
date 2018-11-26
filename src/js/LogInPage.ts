@@ -30,7 +30,7 @@ function login(): void {
             if (response.data !== null)
             {
                 if (response.data.typeOfUser === "U")
-                    window.location.href = 'https://theberthathing.azurewebsites.net/index.htm';
+                    window.location.href = 'https://theberthathing.azurewebsites.net/HomeUser.html';
                 else if (response.data.typeOfUser === "S")
                     window.location.href = 'https://theberthathing.azurewebsites.net/EnvironmentPage.html';
                 else
