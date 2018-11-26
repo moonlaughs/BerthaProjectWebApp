@@ -16,7 +16,7 @@ function getHealth(): void {
         
 
 
-        let uri: string = "http://localhost:3000/HealthUser.html?id=" + params.id;
+        let uri: string = "https://theberthathing.azurewebsites.net/HealthUser.html?id=" + params.id;
         myFrame.src = uri;
 }}
 
@@ -31,6 +31,6 @@ function getEnvironment(): void {
         
 
 
-        let uri: string = "http://localhost:3000/EnvironmentUser.html?id=" + params.id;
+        let uri: string = "https://theberthathing.azurewebsites.net/EnvironmentUser.html?id=" + params.id;
         myFrame.src = uri;
 }}
