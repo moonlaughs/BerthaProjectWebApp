@@ -16,7 +16,8 @@ module.exports = {
     Signup: ['./src/SignupPage.html', './src/scss/styles.scss', './src/js/Signup.ts'],
     Homepage: ['./src/Homepage.html', './src/scss/styles.scss', './src/js/Homepage.ts'],
     Chart: ['./src/Chart.html', './src/scss/styles.scss', './src/js/Chart.ts'],
-    HomeUser: ['./src/HomeUser.html', './src/scss/styles.scss', './src/js/HomeUser.ts']
+    HomeUser: ['./src/HomeUser.html', './src/scss/styles.scss', './src/js/HomeUser.ts'],
+    HealthUser: ['./src/HealthUser.html', './src/scss/styles.scss', './src/js/HealthUser.ts']
   },
   module: {
     // rules webpack should follow when watching...

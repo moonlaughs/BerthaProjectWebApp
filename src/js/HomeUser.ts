@@ -8,8 +8,10 @@ let myFrame: HTMLFrameElement = <HTMLFrameElement> document.getElementById("myFr
 let healthButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById("healthButton");
 let envirnmentButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById("environmentButton");
 
+//myFrame.hidden = true;
+
 //healthButton.addEventListener("click", () => {
-//    myFrame.src = 'http://localhost:3000/index.htm';
+//    myFrame.hidden = false;
 //})
 
 //envirnmentButton.addEventListener("click", () => {
