@@ -198,7 +198,7 @@ google.charts.setOnLoadCallback(healthDataChart);
                   curveType: 'none',
                   lineWidth: 3,
                   dataColor: 'white',
-                  legendTextStyle: {color: 'white', italic: true, fontSize: 16}
+                  legendTextStyle: {color: 'white', italic: true}
             };
       
             var chart = new google.visualization.LineChart(document.getElementById('curve_Chart'));
