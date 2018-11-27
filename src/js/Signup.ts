@@ -1,48 +1,54 @@
 import axios, {
     AxiosResponse,
-    AxiosError} from "../../node_modules/axios";
-    
-    interface IUser {
-        id : number;
-        firstName : string;
-        lastName : string;
-        userName : string;
-        pass : string;
-        age : number;
-        gender : string;
-        typeOfUser : string;
-    }
+    AxiosError
+} from "../../node_modules/axios";
 
-    let firstName: HTMLInputElement = <HTMLInputElement> document.getElementById("firstName");
-    let lastName: HTMLInputElement = <HTMLInputElement> document.getElementById("lastName");
-    let username: HTMLInputElement = <HTMLInputElement> document.getElementById("username");
-    let pass: HTMLInputElement = <HTMLInputElement> document.getElementById("pass");
-    let age: HTMLInputElement = <HTMLInputElement> document.getElementById("age");
-    let selectGender: HTMLSelectElement = <HTMLSelectElement> document.getElementById("selectGender");
+interface IUser {
+    id: number;
+    firstName: string;
+    lastName: string;
+    userName: string;
+    pass: string;
+    age: number;
+    gender: string;
+    typeOfUser: string;
+}
 
-    let addButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById("addButton");
-    addButton.addEventListener("click", AddUser);
-    
-    let backButton: HTMLButtonElement = <HTMLButtonElement> document.getElementById("back");
-    backButton.addEventListener("click", () => window.location.href = 'http://localhost:3000')
+let firstName: HTMLInputElement = <HTMLInputElement>document.getElementById("firstName");
+let lastName: HTMLInputElement = <HTMLInputElement>document.getElementById("lastName");
+let username: HTMLInputElement = <HTMLInputElement>document.getElementById("username");
+let pass: HTMLInputElement = <HTMLInputElement>document.getElementById("pass");
+let pass2: HTMLInputElement = <HTMLInputElement>document.getElementById("pass2");
+let age: HTMLInputElement = <HTMLInputElement>document.getElementById("age");
+let selectGender: HTMLSelectElement = <HTMLSelectElement>document.getElementById("selectGender");
 
-    function AddUser(): void{
-        let myfirstname: string = firstName.value;
-        let mylastname: string = lastName.value;
-        let myusername: string = username.value;
-        let mypass: string = pass.value;
-        let myage: number = parseInt(age.value);
-        let mygender: string = selectGender.value;
-        let myTypeOfUser: string = "U";
+let addButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addButton");
+addButton.addEventListener("click", AddUser);
 
+let backButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("back");
+backButton.addEventListener("click", () => window.location.href = 'http://localhost:3000')
+
+function AddUser(): void {
+    let myfirstname: string = firstName.value;
+    let mylastname: string = lastName.value;
+    let myusername: string = username.value;
+    let mypass: string = pass.value;
+    let myage: number = parseInt(age.value);
+    let mygender: string = selectGender.value;
+    let myTypeOfUser: string = "U";
+
+    if (pass.value === pass2.value) {
         let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users";
-        axios.post<IUser>(uri, {firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, age: myage, gender: mygender, typeOfUser: myTypeOfUser})
-        .then(function(response: AxiosResponse){
-            console.log(response.status + " " + response.statusText);
+        axios.post<IUser>(uri, { firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, age: myage, gender: mygender, typeOfUser: myTypeOfUser })
+            .then(function (response: AxiosResponse) {
+                console.log(response.status + " " + response.statusText);
+                alert("User " + username + " was succesfully added");
                 window.location.href = 'http://localhost:3000';
-        })
-        .catch((error: AxiosError) => {
-            alert("Check if all values are correct!");
-            console.log(error)
-        })
+            })
+            .catch((error: AxiosError) => {
+                alert("Check if all values are correct!");
+                console.log(error);
+            })
     }
+    else alert("password does not match!")
+}
