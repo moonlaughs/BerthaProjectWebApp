@@ -30,19 +30,18 @@ function login(): void {
             if (response.data !== null)
             {
                 if (response.data.typeOfUser === "U")
-                    //window.location.href = 'https://theberthathing.azurewebsites.net/HomeUser.html';
-                    passUserID("http://localhost:3000/HomeUser.html", response.data.id)
+                    passUserID("HomeUser.html", response.data.id)
                 else if (response.data.typeOfUser === "S")
-                    window.location.href = 'https://theberthathing.azurewebsites.net/EnvironmentPage.html';
+                    window.location.href = 'EnvironmentPage.html';
                 else
-                alert("Wrong credentials")
+                alert("Wrong credentials...")
             }
             if (response.data === null)
-            alert("Wrong credentials")
+            alert("No such data...")
         })
         .catch (function (error: AxiosError): void {
     console.log(error);
-    alert("Wrong credentials")
+    alert("Fill up all the information or check your network connection...")
 }
 )}
 
