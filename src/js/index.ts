@@ -61,7 +61,7 @@ showSelectedUser.addEventListener("click", showUser);
 
 function goToChart(id: Number): void {
 
-    window.location.href = 'http://localhost:3000/Chart.html?id=' + id;
+    window.location.href = 'https://theberthathing.azurewebsites.net/Chart.html?id=' + id;
 }
 
 function showUser(): void {

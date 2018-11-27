@@ -15,7 +15,9 @@ module.exports = {
     EnvironmentPage: ['./src/EnvironmentPage.html', './src/scss/styles.scss', './src/js/EnvironmentPage.ts'],
     Signup: ['./src/SignupPage.html', './src/scss/styles.scss', './src/js/Signup.ts'],
     Homepage: ['./src/Homepage.html', './src/scss/styles.scss', './src/js/Homepage.ts'],
-    Chart: ['./src/Chart.html', './src/scss/styles.scss', './src/js/Chart.ts']
+    Chart: ['./src/Chart.html', './src/scss/styles.scss', './src/js/Chart.ts'],
+    HomeUser: ['./src/HomeUser.html', './src/scss/styles.scss', './src/js/HomeUser.ts'],
+    HealthUser: ['./src/HealthUser.html', './src/scss/styles.scss', './src/js/HealthUser.ts']
   },
   module: {
     // rules webpack should follow when watching...
@@ -71,11 +73,12 @@ module.exports = {
     new BrowserSyncPlugin({
       // browse to http://localhost:3000/ during development,
       // ./public directory is being served
+      publicPath: 'https://theberthathing.azurewebsites.net',
       host: 'localhost',
       reload: true,
-      port: 3000,
+      //port: 3000,
       files: ["*.htm", "*.html", "scss/*.*"],
-      index: 'LogInPage.html',
+      index: 'LoginPage.html',
       server: { baseDir: ['dist'] }
     })
   ]
