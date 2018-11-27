@@ -30,7 +30,8 @@ function login(): void {
             if (response.data !== null)
             {
                 if (response.data.typeOfUser === "U")
-                    window.location.href = 'https://theberthathing.azurewebsites.net/index.htm';
+                    //window.location.href = 'https://theberthathing.azurewebsites.net/HomeUser.html';
+                    passUserID("http://localhost:3000/HomeUser.html", response.data.id)
                 else if (response.data.typeOfUser === "S")
                     window.location.href = 'https://theberthathing.azurewebsites.net/EnvironmentPage.html';
                 else
@@ -44,3 +45,7 @@ function login(): void {
     alert("Wrong credentials")
 }
 )}
+
+function passUserID(url: string, id: number): void {
+    window.location.href = url + "?id=" + id;
+}
