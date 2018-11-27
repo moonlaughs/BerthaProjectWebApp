@@ -26,7 +26,7 @@ let addButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("a
 addButton.addEventListener("click", AddUser);
 
 let backButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("back");
-backButton.addEventListener("click", () => window.location.href = 'http://localhost:3000')
+backButton.addEventListener("click", () => window.location.href = 'https://theberthathing.azurewebsites.net/LoginPage.html')
 
 function AddUser(): void {
     let myfirstname: string = firstName.value;
@@ -43,7 +43,7 @@ function AddUser(): void {
             .then(function (response: AxiosResponse) {
                 console.log(response.status + " " + response.statusText);
                 alert("User " + username + " was succesfully added");
-                window.location.href = 'http://localhost:3000';
+                window.location.href = 'https://theberthathing.azurewebsites.net/LoginPage.html';
             })
             .catch((error: AxiosError) => {
                 alert("Check if all values are correct!");
