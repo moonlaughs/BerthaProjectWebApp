@@ -108,7 +108,7 @@ function getAllHealth(): void {
 }
 
 let showSelectedUsersHealthDataButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showSelectedUsersHealthData");
-showSelectedUsersHealthDataButton.addEventListener("click", showSelUserHealthData);
+showSelectedUsersHealthDataButton.addEventListener("click", showSelectedItem);
 let healthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("healthDataOutput");
 
 function addToDOM(response: AxiosResponse<IHealth[]>): void {
@@ -172,13 +172,13 @@ function addToDOM(response: AxiosResponse<IHealth[]>): void {
             console.log(userHealthData.userId);
             // text string!
             // ++ detailContent.innerHTML = bid.item + "<br /> " + bid.price;
-            cHealthDataInput.placeholder = userHealthData.id.toString();
-            cuserIdInput.placeholder = userHealthData.userId.toString();
-            cbloodPressureUInput.placeholder = userHealthData.bloodPressureUpper.toString();
-            cbloodPressureDInput.placeholder = userHealthData.bloodPressureDown.toString();
-            cheartRateInput.placeholder = userHealthData.heartRate.toString();
-            ctemperatureInput.placeholder = userHealthData.temperature.toString();
-            cdateTimeInfoInput.placeholder = userHealthData.dateTimeInfo.toString();
+            cHealthDataInput.defaultValue = userHealthData.id.toString();
+            cuserIdInput.defaultValue = userHealthData.userId.toString();
+            cbloodPressureUInput.defaultValue = userHealthData.bloodPressureUpper.toString();
+            cbloodPressureDInput.defaultValue = userHealthData.bloodPressureDown.toString();
+            cheartRateInput.defaultValue = userHealthData.heartRate.toString();
+            ctemperatureInput.defaultValue = userHealthData.temperature.toString();
+            //cdateTimeInfoInput.defaultValue = userHealthData.dateTimeInfo.toString();
             tr2Element.style.backgroundColor = "red"; // how to unset color?
             //deleteButton.style.display = "block";
             //deleteButton.addEventListener("click", () => {
@@ -188,26 +188,20 @@ function addToDOM(response: AxiosResponse<IHealth[]>): void {
     });
 }
 
-function showSelUserHealthData(): void {
-    let healthDataInput: HTMLInputElement = <HTMLInputElement>document.getElementById("healthDataInput");
+
+function showSelectedItem() : void {
+    let healthDataInput : HTMLInputElement = <HTMLInputElement> document.getElementById("healthDataInput");
     let id: string = healthDataInput.value;
     let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + id + "/health";
-
-    axios.get<IHealth>(uri)
-        .then(function (response: AxiosResponse<IHealth[]>): void {
-            let result: string = "<table></th><th>Blood pressure upper</th><th>Blood pressure down</th><th>Hearth rate</th><th>Temperature</th><th>Date</th>"
-            response.data.forEach((userHealthData: IHealth) => {
-                result += "<tr><td>" + userHealthData.bloodPressureUpper + "</td><td>" + userHealthData.bloodPressureDown + "</td><td>" + userHealthData.heartRate + "</td><td>" + userHealthData.temperature + "</td><td>" + userHealthData.dateTimeInfo + "</td></tr>"
-            });
-            result += "</table>"
-            healthDataOutput.innerHTML = result;
-        })
-        .catch(function (error: AxiosError): void {
-            if (error.response) {
-                healthDataOutput.innerHTML = error;
-            }
-            else { healthDataOutput.innerHTML = error; }
-        })
+    axios.get<IHealth[]>(uri)
+    .then(function(response : AxiosResponse<IHealth[]>) : void {
+       addToDOM(response)
+    })
+    .catch(function(error : AxiosError) : void {
+        if (error.response){
+            healthDataOutput.innerHTML = error;}
+        else {healthDataOutput.innerHTML = error;}
+    })
 }
 
 let bloodPressureUInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureUInput");
@@ -248,7 +242,7 @@ let cbloodPressureUInput: HTMLInputElement = <HTMLInputElement>document.getEleme
 let cbloodPressureDInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cbloodPressureDInput");
 let cheartRateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cheartRateInput");
 let ctemperatureInput: HTMLInputElement = <HTMLInputElement>document.getElementById("ctemperatureInput");
-let cdateTimeInfoInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cdateTimeInfoInput");
+//let cdateTimeInfoInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cdateTimeInfoInput");
 let changeHealthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("changeHealthDataOutput");
 let changeHealthDataButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("changeHealthDataButton");
 changeHealthDataButton.addEventListener("click", changeHealthData);
