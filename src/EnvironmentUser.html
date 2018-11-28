@@ -12,11 +12,11 @@
        th {
       background-color:#0B3861;
       color: white;} 
-      table, th, td { 
+      table, th, td {
       border: 1px solid #071019;
       margin: 10px;
       font-size: 12px;} 
-
+      
       th, td {
        padding: 7px;}
       tr:nth-child(even) {background-color:#0B243B; opacity: 70%;} 
@@ -24,20 +24,15 @@
 </head>
 
 <body>
+
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div id="curve_chart" style="width: 100%; height: 500px;" ></div>
 
 
-        <div id="healthDataOutput" style="width: 100%;"></div>
+        <div id="EnvironmentDataOutput" style="width: 100%;"></div>
 
-        <h2>Add health data</h2>
-  <input id="bloodPressureUInput" placeholder="Type upper blood pressure"/>
-  <input id="bloodPressureDInput" placeholder="Type down blood pressure"/>
-  <input id="heartRateInput" placeholder="Type heart rate"/>
-  <input id="temperatureInput" placeholder="Type temperature"/>
-  <button id="addHealthDataButton">Add this health data</button>
-  <div id="addHealthDataOutput" style="width: 500px">overflow:hidden</div>
+        
 
-<script src="HealthUser.bundle.js"></script>
+<script src="EnvironmentUser.bundle.js"></script>
 </body>
 </html>
