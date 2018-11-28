@@ -18,6 +18,7 @@ module.exports = {
     Chart: ['./src/Chart.html', './src/scss/styles.scss', './src/js/Chart.ts'],
     HomeUser: ['./src/HomeUser.html', './src/scss/styles.scss', './src/js/HomeUser.ts'],
     HealthUser: ['./src/HealthUser.html', './src/scss/styles.scss', './src/js/HealthUser.ts'],
+    MyAccount: ['./src/MyAccount.html', './src/scss/styles.scss', './src/js/MyAccount.ts'],
     AboutUs: ['./src/AboutUs.html', './src/scss/styles.scss']
   },
   module: {
