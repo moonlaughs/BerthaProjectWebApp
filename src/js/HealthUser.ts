@@ -129,7 +129,6 @@ function healthDataChart(): void {
 let bloodPressureDInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureDInput");
 let heartRateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("heartRateInput");
 let temperatureInput: HTMLInputElement = <HTMLInputElement>document.getElementById("temperatureInput");
-let userIdInput: HTMLInputElement = <HTMLInputElement>document.getElementById("userIdInput");
 let addHealthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("addHealthDataOutput");
 let addHealthDataButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addHealthDataButton");
 addHealthDataButton.addEventListener("click", addHealthData);

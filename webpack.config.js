@@ -10,6 +10,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 module.exports = {
   // which files should webpack watch and transpile
   entry: {
+<<<<<<< HEAD
     LogInPage: ['./src/LogInPage.html', './src/scss/styles.scss', './src/js/LogInPage.ts'],
     index: ['./src/index.htm', './src/scss/styles.scss', './src/js/index.ts'],
     EnvironmentPage: ['./src/EnvironmentPage.html', './src/scss/styles.scss', './src/js/EnvironmentPage.ts'],
@@ -19,6 +20,18 @@ module.exports = {
     HomeUser: ['./src/HomeUser.html', './src/scss/styles.scss', './src/js/HomeUser.ts'],
     HealthUser: ['./src/HealthUser.html', './src/scss/styles.scss', './src/js/HealthUser.ts'],
     MyAccount: ['./src/MyAccount.html', './src/scss/styles.scss', './src/js/MyAccount.ts'],
+=======
+    LogInPage: ['./src/LogInPage.html', './src/js/LogInPage.ts'],
+    index: ['./src/index.htm', './src/js/index.ts'],
+    EnvironmentPage: ['./src/EnvironmentPage.html', './src/js/EnvironmentPage.ts'],
+    Signup: ['./src/SignupPage.html', './src/js/Signup.ts'],
+    Homepage: ['./src/Homepage.html', './src/js/Homepage.ts'],
+    Chart: ['./src/Chart.html', './src/js/Chart.ts'],
+    HomeUser: ['./src/HomeUser.html', './src/js/HomeUser.ts'],
+    HealthUser: ['./src/HealthUser.html', './src/js/HealthUser.ts'],
+    EnvironmentUser: ['./src/EnvironmentUser.html', './src/js/EnvironmentUser.ts'],
+    Temp: ['./src/Temp.html', './src/js/Temp.ts'],
+>>>>>>> cd56189f7a190c361e17556a0a33971b24c15cf1
     AboutUs: ['./src/AboutUs.html', './src/scss/styles.scss']
   },
   module: {
