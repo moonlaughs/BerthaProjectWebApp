@@ -23,7 +23,7 @@ let age: HTMLInputElement = <HTMLInputElement>document.getElementById("age");
 let selectGender: HTMLSelectElement = <HTMLSelectElement>document.getElementById("selectGender");
 
 let addButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addButton");
-addButton.addEventListener("click", AddUser);
+addButton.addEventListener("click", AddUserWithUsernameValidation);
 
 let backButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("back");
 backButton.addEventListener("click", () => window.location.href = 'LoginPage.html')
@@ -44,6 +44,36 @@ function AddUser(): void {
                 console.log(response.status + " " + response.statusText);
                 alert("User " + username + " was succesfully added");
                 window.location.href = 'LoginPage.html';
+            })
+            .catch((error: AxiosError) => {
+                alert("Check if all values are correct!");
+                console.log(error);
+            })
+    }
+    else alert("password does not match!")
+}
+
+
+function AddUserWithUsernameValidation(): void {
+    let myfirstname: string = firstName.value;
+    let mylastname: string = lastName.value;
+    let myusername: string = username.value;
+    let mypass: string = pass.value;
+    let myage: number = parseInt(age.value);
+    let mygender: string = selectGender.value;
+    let myTypeOfUser: string = "U";
+
+    if (pass.value === pass2.value) {
+        let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users";
+        axios.post<IUser>(uri, { firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, age: myage, gender: mygender, typeOfUser: myTypeOfUser })
+            .then(function (response: AxiosResponse) {
+                console.log(response.status + " " + response.statusText);
+                if(response.data === true){
+                alert("User " + username.value + " was succesfully added");
+                window.location.href = 'LoginPage.html';}
+                if(response.data === false){
+                    alert("sorry, this username already exists")
+                }
             })
             .catch((error: AxiosError) => {
                 alert("Check if all values are correct!");
