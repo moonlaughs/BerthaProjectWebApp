@@ -24,13 +24,17 @@
 </head>
 
 <body>
+<<<<<<< HEAD
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div id="curve_chart" style="width: 100%; height: 500px;" ></div>
+=======
+  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <div id="curve_chart" style="width: 100%; height: 500px;" ></div>
 
+  <div id="healthDataOutput" style="width: 100%;"></div>
 
-        <div id="healthDataOutput" style="width: 100%;"></div>
-
-        <h2>Add health data</h2>
+  <h2>Add health data</h2>
   <input id="bloodPressureUInput" placeholder="Type upper blood pressure"/>
   <input id="bloodPressureDInput" placeholder="Type down blood pressure"/>
   <input id="heartRateInput" placeholder="Type heart rate"/>
@@ -38,6 +42,17 @@
   <button id="addHealthDataButton">Add this health data</button>
   <div id="addHealthDataOutput" style="width: 500px">overflow:hidden</div>
 
-<script src="HealthUser.bundle.js"></script>
+  <h2>Change health data by id</h2>
+  <input id="cbloodPressureUInput" placeholder="Type upper blood pressure"/>
+  <input id="cbloodPressureDInput" placeholder="Type down blood pressure"/>
+  <input id="cheartRateInput" placeholder="Type heart rate"/>
+  <input id="ctemperatureInput" placeholder="Type temperature"/>
+  <button id="changeHealthDataButton">Change this health data</button>
+  <div id="changeHealthDataOutput" style="width: 500px"></div>
+
+  <button id="deletebutton">DELETE</button>
+  <div id="delHealthDataOutput"></div>
+
+ <script src="HealthUser.bundle.js"></script>
 </body>
 </html>
