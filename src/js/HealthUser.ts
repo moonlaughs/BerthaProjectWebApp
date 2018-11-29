@@ -104,9 +104,9 @@ function healthDataChart(): void {
             chart.draw(data, options);
         })
 
-        
 
-        let healthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("healthDataOutput");
+
+    let healthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("healthDataOutput");
 
         axios.get<IHealth[]>(uri)
        .then(function(response : AxiosResponse<IHealth[]>) : void {
@@ -220,6 +220,7 @@ function healthDataChart(): void {
     }
 
 
+<<<<<<< HEAD
 let bloodPressureUInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureUInput");
 let bloodPressureDInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureDInput");
 let heartRateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("heartRateInput");
@@ -271,3 +272,36 @@ function deleteHealthRecord(id: number): void {
 }
 
 }
+=======
+    let bloodPressureUInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureUInput");
+    let bloodPressureDInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureDInput");
+    let heartRateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("heartRateInput");
+    let temperatureInput: HTMLInputElement = <HTMLInputElement>document.getElementById("temperatureInput");
+    let addHealthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("addHealthDataOutput");
+    let addHealthDataButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addHealthDataButton");
+    addHealthDataButton.addEventListener("click", addHealthData);
+
+    function addHealthData(): void {
+        let bPUI: number = Number(bloodPressureUInput.value);
+        let bPDI: number = Number(bloodPressureDInput.value);
+        let hRI: number = Number(heartRateInput.value);
+        let tI: number = Number(temperatureInput.value);
+        let uII: number = params.id;
+        let myDate: Date = new Date();
+        let hours: number = myDate.getHours();
+        let dTII: Date = new Date(myDate.getFullYear(), myDate.getMonth(), myDate.getDate(), (hours + 1), myDate.getMinutes(), myDate.getSeconds());
+        let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health";
+        axios.post<IHealth>(uri, { bloodPressureUpper: bPUI, bloodPressureDown: bPDI, heartRate: hRI, temperature: tI, userId: uII, dateTimeInfo: dTII })
+            .then((response: AxiosResponse) => {
+                addHealthDataOutput.innerHTML = "Response: " + response.status + " " + response.statusText + "\t";
+                addHealthDataOutput.innerHTML += "The health data is added!"
+            })
+            .catch(function (error: AxiosError): void {
+                if (error.response) {
+                    addHealthDataOutput.innerHTML = error;
+                }
+                else { addHealthDataOutput.innerHTML = error; }
+            })
+    }
+}
+>>>>>>> 4c1c2fca7cf50940d74d57f66850496341fdfc3c
