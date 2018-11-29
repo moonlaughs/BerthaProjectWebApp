@@ -23,6 +23,45 @@
 <body>
   <h1>Bertha project</h1>
 
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <div id="curve_chart" style="width: 100%; height: 500px;" ></div>
+
+  <div id="envDataOutput" style="width: 100%;"></div>
+
+  <h2>Add environmental data</h2>
+  <input id="oxygenInput" placeholder="Type oxygen"/>
+  <input id="co2Input" placeholder="Type co2"/>
+  <input id="coInput" placeholder="Type co"/>
+  <input id="pm25Input" placeholder="Type pm25"/>
+  <input id="pm10Input" placeholder="Type pm10"/>
+  <input id="ozonInput" placeholder="Type ozon"/>
+  <input id="dustPInput" placeholder="Type dust particles"/>
+  <input id="nitDioInput" placeholder="Type nitrogen dioxide"/>
+  <input id="sulDioInput" placeholder="Type sulphur dioxide"/>
+  <input id="longInput" placeholder="Type longitude"/>
+  <input id="latInput" placeholder="Type latitude"/>
+  <button id="addEnvDataButton">Add this environmental data</button>
+  <div id="addEnvDataOutput" style="width: 500px"></div>
+
+  <h2>Change health data by id</h2>
+  <input id="cOxygenInput" placeholder="Type oxygen"/>
+  <input id="cCo2Input" placeholder="Type c02"/>
+  <input id="cCoInput" placeholder="Type co"/>
+  <input id="cPm25Input" placeholder="Type pm25"/>
+  <input id="cPm10Input" placeholder="Type pm10"/>
+  <input id="cOzonInput" placeholder="Type ozon"/>
+  <input id="cDustPInput" placeholder="Type dust particules"/>
+  <input id="cNitDioInput" placeholder="Type nitrogen dioxide"/>
+  <input id="cSulDioInput" placeholder="Type sulphur dioxide"/>
+  <input id="cLongInput" placeholder="Type longitude"/>
+  <input id="cLatInput" placeholder="Type latitude"/>
+  <button id="changeEnvDataButton">Change this health data</button>
+  <div id="changeEnvDataOutput" style="width: 500px"></div>
+
+  <button id="deletebutton">DELETE</button>
+  <div id="delEnvDataOutput"></div>
+
+  <h2>------------------------------------------------------------------------------------</h2>
   <h2>Get all environment data</h2>
   <button id = "allButton">Get all environment data</button>
   <div id = "envOutput2"></div>
