@@ -5,56 +5,92 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline'>
     <title>The Bertha Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-------
+        <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css"> --
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    --->
     <link rel="stylesheet" type="text/css" href="bundle.css">
 
     <style>
-       a
-       {
-        position:relative;
-        top:-60px;
-        left:-600px;
-       }
        body
        {
            padding: 110px;
+           background-image: url("https://i.imgur.com/YxX8SSo.jpg");
        }
-       input
+       /*.form-group
        {
-         width: 210px;
-         height: 14px;
-         border: #071019;
-         opacity: 0.5;
-         padding: 5px;
-         border-radius:8px;
-         margin-bottom:10px;
-       }
-       
-
+           width:250px;
+           position:relative;
+           left:570px;
+           right:-570px;
+           top:90px;
+        }
+        */
     </style>
 </head>
 
 <body>
-    <a href="LoginPage.html">
-     <button id="back">BACK</button>
-    </a>
-    <h2>SIGN UP</h2>
+   
+    <!-----
+    <form>
+        <fieldset>
 
+           
+          <div class="form-group">
+            <legend><h2>SIGN UP</h2></legend>
+          </div>
+          <div class="form-group">
+              <label for="firstName"><small>First name</small></label> 
+             <input type="text" class="form-control" id="firstName" placeholder="Enter first name">
+          </div>
+        
+          <div class="form-group">
+              <label for="lastName"><small>Last name</small></label> 
+             <input type="text" class="form-control" id="lastName" placeholder="Enter last name">
+          </div>
+
+          <div class="form-group">
+            <label for="username"><small>Username</small></label> 
+            <input type="text" class="form-control" id="username" placeholder="Enter username">
+          </div>
+
+          <div class="form-group">
+            <label for="password"><small>Password</small></label>
+            <input type="password" class="form-control" id="pass" placeholder="Enter password">
+          </div>
+
+          <div class="form-group">
+            <label for="confirmpassword"><small>Confirm password</small></label> 
+            <input type="password" class="form-control" id="pass2" placeholder="Confirm password">
+          </div>
+
+          <div class="form-group">
+              <label for="yob"><small>Year of Birth:</small></label>
+              <input id="age" type="number" min="1970" max="2018" step="1" placeholder="Year" />
+          </div>
+          <br><br><br><br>
+
+
+          <button type="submit" class="btn btn-primary">Finish</button>
+          
+        </fieldset>
+      </form>
+      --->
+ 
+      <h1>SIGN UP</h1>
     <input id="firstName" placeholder="Type first name" />
     <br>
     <input id="lastName" placeholder="Type last name" />
     <br>
     <input id="username" placeholder="Type username" />
-
-    <input id="pass2" placeholder="Confirm password" />
-    
     <br>
     <input id="pass" type="password" placeholder="Type password" />
     <br>
     <input id="pass2" placeholder="Confirm password" />
     <br>
-    <!-----<input id="eMail" placeholder="Type e-mail" />
-    <br>
-    -->
     <input id="age" type="number" min="1970" max="2018" step="1" placeholder="Select year of birth" />
     <br>
     <select id="selectGender">
@@ -62,7 +98,10 @@
         <option value="M">male</option>
     </select>
     <br>
-    <button id="addButton">FINISH</button>
+    <button id="addButton" type="button" class="btn btn-primary">FINISH</button>
+
+    
+
 
     <script src="Signup.bundle.js"></script>
 </body>
