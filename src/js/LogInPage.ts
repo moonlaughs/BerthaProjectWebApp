@@ -28,7 +28,7 @@ loginButton.addEventListener("click", login);
 
 /*  the create an account button for pop up box*/
 let addButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addButton");
-addButton.addEventListener("click", AddUser);
+addButton.addEventListener("click", AddUserWithUsernameValidation);
 
 let firstName: HTMLInputElement=<HTMLInputElement>document.getElementById("firstName");
 let lastName:HTMLInputElement=<HTMLInputElement>document.getElementById("lastName");
@@ -66,7 +66,7 @@ function passUserID(url: string, id: number): void {
     window.location.href = url + "?id=" + id;
 }
 /* for pop up sign up page*/
-function AddUser(): void {
+function AddUserWithUsernameValidation(): void {
     let myfirstname: string = firstName.value;
     let mylastname: string = lastName.value;
     let myusername: string = userName.value;
@@ -80,8 +80,12 @@ function AddUser(): void {
         axios.post<IUser>(uri, { firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, age: myage, gender: mygender, typeOfUser: myTypeOfUser })
             .then(function (response: AxiosResponse) {
                 console.log(response.status + " " + response.statusText);
-                alert("User " + userName + " was succesfully added");
-                window.location.href = 'LoginPage.html';
+                if(response.data === true){
+                alert("User " + userName.value + " was succesfully added");
+                window.location.href = 'LoginPage.html';}
+                if(response.data === false){
+                    alert("sorry, this username already exists")
+                }
             })
             .catch((error: AxiosError) => {
                 alert("Check if all values are correct!");
