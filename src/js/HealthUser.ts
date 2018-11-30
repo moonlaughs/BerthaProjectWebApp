@@ -29,15 +29,17 @@ google.charts.load('current', { packages: ['corechart', 'line'] });
 google.charts.setOnLoadCallback(healthDataChart);
 
 function healthDataChart(): void {
-    var regex = /[?&]([^=#]+)=([^&#]*)/g,
+    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
         url = window.location.href;
     var params: any = {},
         match;
     while (match = regex.exec(url)) {
         params[match[1]] = match[2];
-    }
+    }*/
 
-    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + params.id + "/health";
+    var itemID = JSON.parse(localStorage.getItem('id'));
+
+    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + "/health";
 
     axios.get<IHealth>(uri)
         .then(function (response: AxiosResponse<IHealth[]>): void {
@@ -69,9 +71,9 @@ function healthDataChart(): void {
             var options = {
                 hAxis: {
                     title: 'Date',
-                    titleColor: 'white',
+                    titleColor: 'black',
                     textStyle: {
-                        color: 'white',
+                        color: 'black',
                         fontSize: 16,
                         italic: true,
                         bold: true
@@ -79,16 +81,16 @@ function healthDataChart(): void {
                 },
                 vAxis: {
                     title: 'Health',
-                    titleColor: 'white',
+                    titleColor: 'black',
                     textStyle: {
-                        color: 'white',
+                        color: 'black',
                         fontSize: 16,
                         italic: true,
                         bold: true
                     }
                 },
                 titleTextStyle: {
-                    color: 'white',
+                    color: 'black',
                     fontSize: 16,
                     italic: true,
                     bold: true
@@ -96,8 +98,8 @@ function healthDataChart(): void {
                 backgroundColor: 'transparent',
                 curveType: 'none',
                 lineWidth: 3,
-                dataColor: 'white',
-                legendTextStyle: { color: 'white', italic: true }
+                dataColor: 'black',
+                legendTextStyle: { color: 'black', italic: true }
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
@@ -233,7 +235,7 @@ function addHealthData(): void {
     let bPDI: number = Number(bloodPressureDInput.value);
     let hRI: number = Number(heartRateInput.value);
     let tI: number = Number(temperatureInput.value);
-    let uII: number = params.id;
+    let uII: number = itemID;
     let myDate: Date = new Date();
     let hours: number = myDate.getHours();
     let dTII: Date = new Date(myDate.getFullYear(), myDate.getMonth(), myDate.getDate(), (hours + 1), myDate.getMinutes(), myDate.getSeconds());

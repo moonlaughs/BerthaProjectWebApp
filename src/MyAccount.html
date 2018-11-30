@@ -26,7 +26,7 @@
 
 <body style="background-color:lavender">
   <!-- Carousel starts here -->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="position:fixed; width:100%; z-index: 1; top: 0">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -59,13 +59,13 @@
   </div>
 
   <!-- Nav bar starts here-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center" style="position:fixed;  width: 100%; margin-top: 275px; z-index: 1; top: 0">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="HealthUser.html">Health</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="EnvironmentUser.html">Environment</a>
+        <a class="nav-link" href="EnvironmentPage.html">Environment</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Temp.html">Temperature</a>
@@ -79,11 +79,45 @@
     </ul>
   </nav>
 
-<!-- Displaying info -->
-<h1>Profile information</h1>
-<div id="Info">Info</div>
-<button id="infoButton">Info</button>
+  <!-- Displaying info -->
+  <div class="row" style="margin-top: 350px;">
+    <!-- This is for column 1 -->
+    <div class="col" style="margin-left: 20%">
+      <h2>Profile information</h2>
+      <style>
+        table {
+         border-collapse: collapse;}
 
+         tr {
+          color: black;} 
+
+        table, tr, td {
+        border: 1px solid black;
+        margin: 10px;
+        border-radius: 5px} 
+
+        tr,td {
+         padding: 7px;}
+      </style>
+      <div id="Info">Info</div>
+      <br>
+    </div>
+
+    <!-- Updating credentials -->
+    <div class="col" style="margin-right: 20%">
+      <h2>Edit profile</h2>
+      <input id="username" placeholder="Type username" class="form-control" aria-describedby="username" />
+      <br>
+      <input id="pass1" type="password" placeholder="Type password" class="form-control" />
+      <br>
+      <input id="pass2" type="password" placeholder="Confirm password" class="form-control" />
+      <br>
+      <button id="confirmButton" class="btn btn-primary" style="width: 196px; height: 35;">Save changes</button>
+      <!-- Delete starts here -->
+      <button id="delUser" class="btn btn-danger" style="width: 196px; height: 35;">Deactive account</button>
+      <div id="delOutput"></div>
+    </div>
+  </div>
 
   <script src="MyAccount.bundle.js"></script>
 </body>
