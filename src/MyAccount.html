@@ -26,7 +26,7 @@
 
 <body style="background-color:lavender">
   <!-- Carousel starts here -->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="position:fixed; width:100%; z-index: 1; top: 0">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -59,13 +59,13 @@
   </div>
 
   <!-- Nav bar starts here-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center" style="position:fixed;  width: 100%; margin-top: 275px; z-index: 1; top: 0">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="HealthUser.html">Health</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="EnvironmentUser.html">Environment</a>
+        <a class="nav-link" href="EnvironmentPage.html">Environment</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Temp.html">Temperature</a>
@@ -80,7 +80,7 @@
   </nav>
 
   <!-- Displaying info -->
-  <div class="row">
+  <div class="row" style="margin-top: 350px;">
     <!-- This is for column 1 -->
     <div class="col" style="margin-left: 20%">
       <h2>Profile information</h2>
@@ -100,7 +100,6 @@
          padding: 7px;}
       </style>
       <div id="Info">Info</div>
-      <button id="infoButton">Info</button>
       <br>
     </div>
 

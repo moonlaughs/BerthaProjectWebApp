@@ -15,32 +15,23 @@ interface IUser {
 }
 
 let Info: HTMLOutputElement = <HTMLOutputElement>document.getElementById("Info");
-let infoButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("infoButton");
-infoButton.addEventListener("click", AccountInfo)
 
-function AccountInfo(): void {
-    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
-        url = window.location.href;
-    var params: any = {},
-        match;
-    while (match = regex.exec(url)) {
-        params[match[1]] = match[2];
-    }*/
+var itemID = JSON.parse(localStorage.getItem('id'));
 
-}
-let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/4"; //+ "?id="+ "1";//params.id;
+
+let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
 axios.get<IUser>(uri)
     .then(function (response: AxiosResponse<IUser>): void {
         console.log(response.data);
-        let result: string = "<table><tr><td>First Name</td><td>" + response.data.firstName + "</td></tr><tr><td>Last Name</td><td>" + response.data.lastName + "</td><tr><td>Username</td><td>" + response.data.userName + "</td><tr><td>Age</td><td>" + response.data.age +"</td><tr><td>Gender</td><td>" + response.data.gender + "</td></table>";
-Info.innerHTML = result;
-})
-    .catch (function (error: AxiosError): void {
-    if (error.response) {
-        Info.innerHTML = error;
-    }
-    else { Info.innerHTML = error; }
-});
+        let result: string = "<table><tr><td>First Name</td><td>" + response.data.firstName + "</td></tr><tr><td>Last Name</td><td>" + response.data.lastName + "</td><tr><td>Username</td><td>" + response.data.userName + "</td><tr><td>Age</td><td>" + response.data.age + "</td><tr><td>Gender</td><td>" + response.data.gender + "</td></table>";
+        Info.innerHTML = result;
+    })
+    .catch(function (error: AxiosError): void {
+        if (error.response) {
+            Info.innerHTML = error;
+        }
+        else { Info.innerHTML = error; }
+    });
 
 
 let confirmButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("confirmButton");
@@ -51,19 +42,11 @@ let pass1: HTMLInputElement = <HTMLInputElement>document.getElementById("pass1")
 let pass2: HTMLInputElement = <HTMLInputElement>document.getElementById("pass2");
 
 function updateCredentials(): void {
-    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
-    url = window.location.href;
-var params: any = {},
-    match;
-while (match = regex.exec(url)) {
-    params[match[1]] = match[2];
-}*/
-
     let myusername: string = username.value;
     let mypassword: string = pass1.value;
 
     if (pass1.value === pass2.value) {
-        let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/4"; // + params.id;
+        let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
         axios.put<IUser>(uri, { userName: myusername, pass: mypassword })
             .then((response: AxiosResponse) => {
                 console.log(response.status)
@@ -81,14 +64,7 @@ let delUser: HTMLButtonElement = <HTMLButtonElement>document.getElementById("del
 delUser.addEventListener("click", delAccount);
 
 function delAccount(): void {
-    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
-url = window.location.href;
-var params: any = {},
-match;
-while (match = regex.exec(url)) {
-params[match[1]] = match[2];
-}*/
-    let deleteUri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/4"; //+ params.id;
+    let deleteUri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
     console.log("DELETE " + deleteUri);
     axios.delete<IUser>(deleteUri)
         .then(function (response: AxiosResponse<IUser>): void {
