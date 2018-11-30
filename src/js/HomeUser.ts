@@ -31,9 +31,6 @@ function getEnvironment(): void {
         
 
 
-<<<<<<< HEAD
-        let uri: string = "EnvironmentUser.html?id=" + params.id;
-=======
         let myuri: string = "EnvironmentUser.html?id=" + params.id;
         let uri: string = "EnvironmentPage.html?id=" + params.id;
         myFrame.src = uri;
@@ -51,6 +48,5 @@ function getAccount(): void {
 
 
         let uri: string = "MyAccount.html?id=" + params.id;
->>>>>>> a2560812519d27b2fea9e35c3f02741593978efd
         myFrame.src = uri;
 }}
