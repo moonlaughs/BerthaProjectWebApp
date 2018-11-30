@@ -20,7 +20,8 @@ module.exports = {
     HealthUser: ['./src/HealthUser.html', './src/js/HealthUser.ts'],
     EnvironmentUser: ['./src/EnvironmentUser.html', './src/js/EnvironmentUser.ts'],
     Temp: ['./src/Temp.html', './src/js/Temp.ts'],
-    AboutUs: ['./src/AboutUs.html', './src/scss/styles.scss']
+    AboutUs: ['./src/AboutUs.html'],
+    MyAccount: ['./src/MyAccount.html', './src/js/MyAccount.ts']
   },
   module: {
     // rules webpack should follow when watching...

@@ -78,11 +78,46 @@
     </ul>
   </nav>
 
-<!-- Displaying info -->
-<h1>Profile information</h1>
-<div id="Info">Info</div>
-<button id="infoButton">Info</button>
+  <!-- Displaying info -->
+  <div class="row">
+    <!-- This is for column 1 -->
+    <div class="col" style="margin-left: 20%">
+      <h2>Profile information</h2>
+      <style>
+        table {
+         border-collapse: collapse;}
 
+         tr {
+          color: black;} 
+
+        table, tr, td {
+        border: 1px solid black;
+        margin: 10px;
+        border-radius: 5px} 
+
+        tr,td {
+         padding: 7px;}
+      </style>
+      <div id="Info">Info</div>
+      <button id="infoButton">Info</button>
+      <br>
+    </div>
+
+    <!-- Updating credentials -->
+    <div class="col" style="margin-right: 20%">
+      <h2>Edit profile</h2>
+      <input id="username" placeholder="Type username" class="form-control" aria-describedby="username" />
+      <br>
+      <input id="pass1" type="password" placeholder="Type password" class="form-control" />
+      <br>
+      <input id="pass2" type="password" placeholder="Confirm password" class="form-control" />
+      <br>
+      <button id="confirmButton" class="btn btn-primary" style="width: 196px; height: 35;">Save changes</button>
+      <!-- Delete starts here -->
+      <button id="delUser" class="btn btn-danger" style="width: 196px; height: 35;">Deactive account</button>
+      <div id="delOutput"></div>
+    </div>
+  </div>
 
   <script src="MyAccount.bundle.js"></script>
 </body>

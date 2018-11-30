@@ -31,7 +31,8 @@ function getEnvironment(): void {
         
 
 
-        let uri: string = "EnvironmentUser.html?id=" + params.id;
+        let myuri: string = "EnvironmentUser.html?id=" + params.id;
+        let uri: string = "EnvironmentPage.html?id=" + params.id;
         myFrame.src = uri;
 }}
 
