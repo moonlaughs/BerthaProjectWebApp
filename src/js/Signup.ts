@@ -65,11 +65,7 @@ function AddUser(): void {
 function AddUserWithUsernameValidation(): void {
     let myfirstname: string = firstName.value;
     let mylastname: string = lastName.value;
-<<<<<<< HEAD
-    let myusername: string = username.value;
-=======
     let myusername: string = userName.value;
->>>>>>> a2560812519d27b2fea9e35c3f02741593978efd
     let mypass: string = pass.value;
     let myage: number = parseInt(age.value);
     let mygender: string = selectGender.value;
@@ -81,11 +77,7 @@ function AddUserWithUsernameValidation(): void {
             .then(function (response: AxiosResponse) {
                 console.log(response.status + " " + response.statusText);
                 if(response.data === true){
-<<<<<<< HEAD
-                alert("User " + username.value + " was succesfully added");
-=======
                 alert("User " + userName.value + " was succesfully added");
->>>>>>> a2560812519d27b2fea9e35c3f02741593978efd
                 window.location.href = 'LoginPage.html';}
                 if(response.data === false){
                     alert("sorry, this username already exists")
