@@ -14,23 +14,6 @@ interface IUser {
     typeOfUser : string;
 }
 
-interface IEnvironment{
-    id : number;
-    oxygen: number;
-    co2: number;
-    co: number;
-    pm25: number;
-    pm10: number;
-    ozon: number;
-    dustParticles: number;
-    nitrogenDioxide: number;
-    sulphurDioxide: number;
-    longitude: number;
-    latitude: number;
-    userId: number;
-    dateTimeInfo: Date;
-}
-
 interface IHealth {
     id : number;
     bloodPressureUpper : number;
@@ -40,91 +23,6 @@ interface IHealth {
     userId : number;
     dateTimeInfo : Date;
 }
-
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(envDataChart);
-
-function envDataChart(): void {
-    var regex = /[?&]([^=#]+)=([^&#]*)/g,
-    url = window.location.href;
-    var params: any = {},
-    match;
-    while(match = regex.exec(url)) {
-        params[match[1]] = match[2];
-    }
-
-    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + params.id + "/environment";
-
-    axios.get<IEnvironment>(uri)
-    .then(function (response: AxiosResponse<IEnvironment[]>): void {
-        console.log(response);
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'X');
-        data.addColumn('number', 'Oxygen');
-        data.addColumn('number', 'Co2');
-        data.addColumn('number', 'Co');
-        data.addColumn('number', 'Pm25');
-        data.addColumn('number', 'Pm10');
-        data.addColumn('number', 'Ozon');
-        data.addColumn('number', 'Dust particles');
-        data.addColumn('number', 'Nitrogen Dioxide');
-        data.addColumn('number', 'Sulphur dioxide');
-        
-        response.data.sort((a: IEnvironment, b: IEnvironment) => {
-            return new Date(Date.parse(a.dateTimeInfo.toString())).getTime() - new Date(Date.parse(b.dateTimeInfo.toString())).getTime();
-        });
-        var newarr = [response.data[0]];
-        for (var i=1; i<response.data.length; i++) {
-           if (response.data[i].dateTimeInfo.toString().split('T')[0]!=response.data[i-1].dateTimeInfo.toString().split('T')[0]){
-            newarr.push(response.data[i]);
-           }
-        }
-
-        newarr.forEach((env: IEnvironment) => {
-            data.addRows([
-                [env.dateTimeInfo.toString().split('T')[0], env.oxygen, env.co2, env.co, env.pm25, env.pm10, env.ozon, env.dustParticles, env.nitrogenDioxide, env.sulphurDioxide]
-              ]);
-            
-        });   
-  
-        var options = {
-          hAxis: {
-            title: 'Date',
-            titleColor: 'white',
-            textStyle: {
-              color: 'white',
-              fontSize: 16,
-              italic: true,
-              bold: true
-            }
-          },
-          vAxis: {
-            title: 'Environment', 
-            titleColor: 'white',
-            textStyle: {
-              color: 'white',
-              fontSize: 16,
-              italic: true, 
-              bold: true
-            }
-          },
-          titleTextStyle: {
-            color: 'white',
-            fontSize: 16,
-            italic: true,
-            bold: true
-          },
-          backgroundColor: 'transparent', 
-          curveLine: 'none',
-          lineWidth: 3,
-          legendTextStyle: {color: 'white', italic: true}
-        };
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-        chart.draw(data, options);
-    })
-    }
-
-
 
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(healthDataChart);
@@ -204,4 +102,22 @@ google.charts.setOnLoadCallback(healthDataChart);
             var chart = new google.visualization.LineChart(document.getElementById('curve_Chart'));
             chart.draw(data, options);
         })
-        }
+
+        let healthDataOutput : HTMLOutputElement = <HTMLOutputElement> document.getElementById("healthDataOutput");
+
+        axios.get<IHealth>(uri)
+           .then(function(response:AxiosResponse<IHealth[]>): void {
+              let result: string = "<table><tr><th>Id</th><th>Blood pressure upper</th><th>Blood pressure down</th><th>Hearth rate</th><th>Temperature</th><th>Date</th>" 
+                response.data.forEach((userHealthData: IHealth) => {
+              result += "<tr><td>" + userHealthData.id + "</td><td>" + userHealthData.bloodPressureUpper + "</td><td>" + userHealthData.bloodPressureDown + "</td><td>" + userHealthData.heartRate + "</td><td>" + userHealthData.temperature + "</td><td>" + userHealthData.dateTimeInfo + "</td></tr>"
+            });
+        result += "</table>"
+        healthDataOutput.innerHTML = result;
+        })
+        .catch (function (error: AxiosError): void {
+           if (error.response) {
+               healthDataOutput.innerHTML = error;}
+           else {healthDataOutput.innerHTML = error;}
+        })
+       
+    }
