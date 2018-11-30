@@ -18,15 +18,17 @@ let Info: HTMLOutputElement = <HTMLOutputElement>document.getElementById("Info")
 let infoButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("infoButton");
 infoButton.addEventListener("click", AccountInfo)
 
+var itemID = JSON.parse(localStorage.getItem('id'));
+
 function AccountInfo(): void {
-    var regex = /[?&]([^=#]+)=([^&#]*)/g,
+    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
         url = window.location.href;
     var params: any = {},
         match;
     while (match = regex.exec(url)) {
         params[match[1]] = match[2];
-    }
-    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/1"; //+ "?id="+ "1";//params.id;
+    }*/
+    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
     axios.get<IUser>(uri)
         .then(function (response: AxiosResponse<IUser>): void {
             let result: string = "<table></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Age</th><th>Gender</th>"
