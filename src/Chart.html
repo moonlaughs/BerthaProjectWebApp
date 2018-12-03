@@ -5,13 +5,30 @@
   <title>The Bertha Project</title>
   <link rel="stylesheet" type="text/css" href="bundle.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <style>
+          table {
+       border-collapse: collapse;}
+       th {
+      background-color:#0B3861;
+      color: white;} 
+      table, th, td {
+      border: 1px solid #071019;
+      margin: 10px;
+      font-size: 12px;} 
+      
+      th, td {
+       padding: 7px;}
+      tr:nth-child(even) {background-color:#0B243B; opacity: 70%;} 
+  </style>
   </head>
+
+  
 <body>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <div id="curve_chart" style="width: 100%; height: 500px;" ></div>
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div id="curve_Chart" style="width: 100%; height: 500px"></div>
+
+        <div id="healthDataOutput"></div>
         
   <script src="Chart.bundle.js"></script>
 </body>

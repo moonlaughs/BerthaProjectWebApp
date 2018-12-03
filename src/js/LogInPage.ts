@@ -47,9 +47,9 @@ function login(): void {
             if (response.data !== null)
             {
                 if (response.data.typeOfUser === "U")
-                    passUserID("HomeUser.html", response.data.id)
+                    passUserID("HealthUser.html", response.data.id)
                 else if (response.data.typeOfUser === "S")
-                    window.location.href = 'EnvironmentPage.html';
+                    passUserID("HealthUser.html", response.data.id); //maybe pass that this is a scientist
                 else
                 alert("Wrong credentials...")
             }
@@ -63,7 +63,8 @@ function login(): void {
 )}
 
 function passUserID(url: string, id: number): void {
-    window.location.href = url + "?id=" + id;
+    window.location.href = url;
+    localStorage.setItem('id', JSON.stringify(id));
 }
 /* for pop up sign up page*/
 function AddUserWithUsernameValidation(): void {

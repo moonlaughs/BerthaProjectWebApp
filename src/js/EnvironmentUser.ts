@@ -35,16 +35,19 @@ interface IEnvironment{
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(envDataChart);
 
+var itemID = JSON.parse(localStorage.getItem('id'));
+
 function envDataChart(): void {
-    var regex = /[?&]([^=#]+)=([^&#]*)/g,
+    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
     url = window.location.href;
     var params: any = {},
     match;
     while(match = regex.exec(url)) {
         params[match[1]] = match[2];
-    }
+    }*/
 
-    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + params.id + "/environment";
+
+    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + "/environment";
 
     axios.get<IEnvironment>(uri)
     .then(function (response: AxiosResponse<IEnvironment[]>): void {
@@ -113,4 +116,22 @@ function envDataChart(): void {
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
         chart.draw(data, options);
     })
-    }
+
+    let envOutput: HTMLDivElement = <HTMLDivElement>document.getElementById("envOutput");
+
+    axios.get<IEnvironment>(uri)
+    .then(function (response: AxiosResponse<IEnvironment[]>): void{
+        let result: string = "<table></th><th>Oxygen</th><th>Co2</th><th>Co</th><th>Pm25</th><th>Pm10</th><th>Ozon</th><th>Dust Particles</th><th>Nitrogen Dioxide</th><th>Sulphur Dioxide</th><th>Longitute</th><th>Latitute</th><th>Date</th>" 
+             response.data.forEach((env: IEnvironment) => {
+            result += "<tr><td>" + env.oxygen + "</td><td>" + env.co2 + "</td><td>" + env.co + "</td><td>" + env.pm25 + "</td><td>" + env.pm10 + "</td><td>" + env.ozon + "</td><td>" + env.dustParticles + "</td><td>" + env.nitrogenDioxide + "</td><td>" + env.sulphurDioxide + "</td><td>" + env.longitude + "</td><td>" + env.latitude + "</td><td>" + env.dateTimeInfo + "</td></tr>"
+        });
+        result += "</table>"
+        envOutput.innerHTML = result;
+    })
+    .catch (function (error: AxiosError): void {
+        if (error.response) {
+            envOutput.innerHTML = error;}
+        else {envOutput.innerHTML = error;}
+   })
+
+}

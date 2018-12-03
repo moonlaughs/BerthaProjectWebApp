@@ -35,16 +35,19 @@ interface IEnvironment{
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(envDataChart);
 
+var itemID = JSON.parse(localStorage.getItem('id'));
+
 function envDataChart(): void {
-    var regex = /[?&]([^=#]+)=([^&#]*)/g,
+    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
        url = window.location.href;
     var params: any = {},
        match;
     while(match = regex.exec(url)) {
        params[match[1]] = match[2];
-    }
+    }*/
 
-    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + params.id + "/environment";
+
+    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + "/environment";
 
     axios.get<IEnvironment>(uri)
        .then(function (response: AxiosResponse<IEnvironment[]>): void {
@@ -317,7 +320,7 @@ function addEnvData(): void{
     let addSD: number = Number(sulDioInput.value);
     let addLon: number = Number(longInput.value);
     let addLan: number = Number(latInput.value);
-    let addUI: number = params.id;
+    let addUI: number = itemID;
     let myDate : Date = new Date();
     let hours : number = myDate.getHours();
     let dTII : Date = new Date(myDate.getFullYear(), myDate.getMonth(), myDate.getDate(), (hours + 1), myDate.getMinutes(), myDate.getSeconds());
