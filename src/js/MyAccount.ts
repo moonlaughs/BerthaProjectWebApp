@@ -58,29 +58,16 @@ function updateCredentials(): void {
     
 
     if (pass1.value === pass2.value) {
-        let uri1: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+        let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
 
-    axios.get<IUser>(uri1)
-        .then(function (response: AxiosResponse<IUser>): void {
-            console.log(response.data);
-            var user: IUser = response.data;
-            let uri2: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
-            axios.put<IUser>(uri2, { firstName: user.firstName, lastName: user.lastName, userName: myusername, pass: mypassword, age: user.age, gender: user.gender, typeOfUser: user.typeOfUser })
-                .then((response: AxiosResponse) => {
-                    console.log(response.status)
-                    alert("Credentials were changed successfuly");
-                })
-                .catch(function (error: AxiosError): void {
-                    console.log(error);
-                    alert("Something went wrong...");
-                }) 
+        axios.put<IUser>(uri, {firstName: myfirstName, lastName: mylastName, userName: myusername, pass: mypassword, year: myyear, gender: mygender, typeOfUser: myTypeOfTheUser})
+        .then((response: AxiosResponse) => {
+            console.log(response.status);
+            alert("credentials were changed successfuly");
         })
-        .catch(function (error: AxiosError): void {
+        .catch(function(error: AxiosError): void{
             console.log(error);
-            alert("Something went wrong...");
-        });
-
-        
+        })
     }
     else alert("Password does not match!")
 }
@@ -115,8 +102,6 @@ axios.get<IUser>(uri)
         year.defaultValue = response.data.year;
         gender.defaultValue = response.data.gender;
         username.defaultValue = response.data.userName;
-        pass1.defaultValue = response.data.pass1;
-        pass2.defaultValue = response.data.pass2;
     })
     .catch(function (error: AxiosError): void {
         if (error.response) {
