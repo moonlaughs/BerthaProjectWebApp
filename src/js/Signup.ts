@@ -17,7 +17,7 @@ interface IUser {
 
 let firstName: HTMLInputElement = <HTMLInputElement>document.getElementById("firstName");
 let lastName: HTMLInputElement = <HTMLInputElement>document.getElementById("lastName");
-let userName: HTMLInputElement = <HTMLInputElement>document.getElementById("userName");
+let userName: HTMLInputElement = <HTMLInputElement>document.getElementById("username");
 let pass: HTMLInputElement = <HTMLInputElement>document.getElementById("pass");
 let pass2: HTMLInputElement = <HTMLInputElement>document.getElementById("pass2");
 let age: HTMLInputElement = <HTMLInputElement>document.getElementById("age");
