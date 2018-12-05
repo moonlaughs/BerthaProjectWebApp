@@ -107,15 +107,23 @@
     <!-- Updating credentials -->
     <div class="col" style="margin-right: 20%">
       <h2>Edit profile</h2>
-      <input id="username" placeholder="Type username" class="form-control" aria-describedby="username" />
+      <input id="firstName" placeholder="Type first name" class="form-control"/>
       <br>
-      <input id="pass1" type="password" placeholder="Type password" class="form-control" />
+      <input id="lastName" placeholder="Type last name" class="form-control"/>
       <br>
-      <input id="pass2" type="password" placeholder="Confirm password" class="form-control" />
+      <input id="year" placeholder="Type year" class="form-control"/>
       <br>
-      <button id="confirmButton" class="btn-expand-lg btn btn-primary" style="width: 196px; height: 35;">Save changes</button>
+      <input id="gender" placeholder="Type gender" class="form-control"/>
+      <br>
+      <input id="username" placeholder="Type username" class="form-control"/>
+      <br>
+      <input id="pass1" type="password" placeholder="Type old password" class="form-control" />
+      <br>
+      <input id="pass2" type="password" placeholder="Confirm new password" class="form-control" />
+      <br>
+      <button id="confirmButton" class="btn-expand-lg btn btn-primary">Save changes</button>
       <!-- Delete starts here -->
-      <button id="delUser" class="btn-expand-lg btn btn-danger" style="width: 196px; height: 35;">Deactive account</button>
+      <button id="delUser" class="btn-expand-lg btn btn-danger">Deactive account</button>
       <div id="delOutput"></div>
     </div>
   </div>
