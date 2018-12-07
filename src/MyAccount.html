@@ -16,12 +16,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    ::-webkit-scrollbar 
-    {
-      display: none;
-    }
-  </style>
 </head>
 
 <body style="background-color:lavender">
@@ -79,33 +73,8 @@
     </ul>
   </nav>
 
-  <!-- Displaying info -->
-  <div class="row" style="margin-top: 350px;">
-    <!-- This is for column 1 -->
-    <div class="col" style="margin-left: 20%">
-      <h2>Profile information</h2>
-      <style>
-        table {
-         border-collapse: collapse;}
-
-         tr {
-          color: black;} 
-
-        table, tr, td {
-        border: 1px solid black;
-        margin: 10px;
-        border-radius: 5px;
-        } 
-
-        tr,td  {
-         padding: 7px;}
-      </style>
-      <div id="Info">Info</div>
-      <br>
-    </div>
-
     <!-- Updating credentials -->
-    <div class="col" style="margin-right: 20%">
+    <div class="col" style="position:fixed; width: 100%; margin-top: 320px; z-index: 2; top: 0">
       <h2>Edit profile</h2>
       <input id="firstName" placeholder="Type first name" class="form-control"/>
       <br>
@@ -117,11 +86,14 @@
       <br>
       <input id="username" placeholder="Type username" class="form-control"/>
       <br>
+      <input id="password" type ="password" placeholder="Current password" class="form-control" />
+      <br>
       <input id="pass1" type="password" placeholder="Type old password" class="form-control" />
       <br>
       <input id="pass2" type="password" placeholder="Confirm new password" class="form-control" />
       <br>
       <button id="confirmButton" class="btn-expand-lg btn btn-primary">Save changes</button>
+
       <!-- Delete starts here -->
       <button id="delUser" class="btn-expand-lg btn btn-danger">Deactive account</button>
       <div id="delOutput"></div>
