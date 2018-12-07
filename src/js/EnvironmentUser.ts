@@ -3,17 +3,6 @@ import axios, {
     AxiosError
 } from "../../node_modules/axios";
 
-interface IUser {
-    id: number;
-    firstName: string;
-    lastName: string;
-    userName: string;
-    pass: string;
-    age: number;
-    gender: string;
-    typeOfUser: string;
-}
-
 interface IEnvironment{
     id : number;
     oxygen: number;
