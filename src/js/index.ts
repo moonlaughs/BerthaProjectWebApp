@@ -9,36 +9,9 @@ interface IUser {
     lastName: string;
     userName: string;
     pass: string;
-    age: number;
+    year: number;
     gender: string;
     typeOfUser: string;
-}
-
-interface IHealth {
-    id: number;
-    bloodPressureUpper: number;
-    bloodPressureDown: number;
-    heartRate: number;
-    temperature: number;
-    userId: number;
-    dateTimeInfo: Date;
-}
-
-interface IEnvironment{
-    id : number;
-    oxygen: number;
-    co2: number;
-    co: number;
-    pm25: number;
-    pm10: number;
-    ozon: number;
-    dustParticles: number;
-    nitrogenDioxide: number;
-    sulphurDioxide: number;
-    longitude: number;
-    latitude: number;
-    userId: number;
-    dateTimeInfo: Date;
 }
 
 let showSelectedUser: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showSelectedUser");

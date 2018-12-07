@@ -3,17 +3,6 @@ import axios,{
     AxiosError
 } from "../../node_modules/axios";
 
-interface IUser {
-    id : number;
-    firstName : string;
-    lastName : string;
-    userName : string;
-    pass : string;
-    age : number;
-    gender : string;
-    typeOfUser : string;
-}
-
 interface IEnvironment{
     id : number;
     oxygen: number;
@@ -268,12 +257,12 @@ function envDataChart(): void {
         let co2I: number = Number(cCo2Input.value);
         let coI: number = Number(cCoInput.value);
         let pm25I: number = Number(cPm25Input.value);
-        let pm10I: number = Number(cPm10Input);
+        let pm10I: number = Number(cPm10Input.value);
         let ozonI: number = Number(cOzonInput.value);
         let dustPI: number = Number(cDustPInput.value);
         let nitDioI: number = Number(cNitDioInput.value);
         let sulDioI: number = Number(cSulDioInput.value);
-        let longI: number = Number(cLongInput);
+        let longI: number = Number(cLongInput.value);
         let latI: number = Number(cLatInput.value);
         let uII: number = Number(cuserIdInput);
         let myDate: Date = new Date();
@@ -283,7 +272,7 @@ function envDataChart(): void {
         axios.put<IEnvironment>(uri, { oxygen: oxygenI, co2: co2I, co: coI, pm25: pm25I, pm10: pm10I, ozon: ozonI, dustParticles: dustPI, nitrogenDioxide: nitDioI, sulphurDioxide: sulDioI, longitude: longI, latitude: latI, userId: uII, dateTimeInfo: dTII })
             .then((response: AxiosResponse) => {
                 changeEnvDataOutput.innerHTML = "Response: " + response.status + " " + response.statusText + "\t";
-                changeEnvDataOutput.innerHTML += "The health data is changed!"
+                changeEnvDataOutput.innerHTML += "The env data is changed!"
             })
             .catch(function (error: AxiosError): void {
                 if (error.response) {
@@ -360,58 +349,3 @@ function deleteEnvDataRecord(id: number): void {
 }  
     
 }
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*let allButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("allButton");
-allButton.addEventListener("click", getAllEnv);
-
-function getAllEnv(): void{
-    let envOutput2: HTMLDivElement = <HTMLDivElement>document.getElementById("envOutput2");
-    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/environment"; 
-
-    axios.get<IEnvironment>(uri)
-    .then(function (response: AxiosResponse<IEnvironment[]>): void{
-        let result: string = "<table><tr><th>Id</th><th>Oxygen</th><th>Co2</th><th>Co</th><th>Pm25</th><th>Pm10</th><th>Ozon</th><th>Dust Particles</th><th>Nitrogen Dioxide</th><th>Sulphur Dioxide</th><th>Longitute</th><th>Latitute</th><th>User Id</th><th>Date</th>" 
-             response.data.forEach((envD: IEnvironment) => {
-            result += "<tr><td>" + envD.id + "</td><td>" + envD.oxygen + "</td><td>" + envD.co2 + "</td><td>" + envD.co + "</td><td>" + envD.pm25 + "</td><td>" + envD.pm10 + "</td><td>" + envD.ozon + "</td><td>" + envD.dustParticles + "</td><td>" + envD.nitrogenDioxide + "</td><td>" + envD.sulphurDioxide + "</td><td>" + envD.longitude + "</td><td>" + envD.latitude + "</td><td>" + envD.userId + "</td><td>" + envD.dateTimeInfo + "</td></tr>"
-        });
-        result += "</table>"
-        envOutput2.innerHTML = result;
-    })
-    .catch (function (error: AxiosError): void {
-        if (error.response) {
-            envOutput2.innerHTML = error;}
-        else {envOutput2.innerHTML = error;}
-   })
-}
-
-let getAllButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getAllButton");
-getAllButton.addEventListener("click", getEnvData);
-
-function getEnvData(): void{
-    let envInput: HTMLInputElement = <HTMLInputElement>document.getElementById("envInput");
-    let envOutput: HTMLDivElement = <HTMLDivElement>document.getElementById("envOutput");
-    let id: string = envInput.value;
-    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + id + "/environment";
-
-    axios.get<IEnvironment>(uri)
-    .then(function (response: AxiosResponse<IEnvironment[]>): void{
-        let result: string = "<table></th><th>Oxygen</th><th>Co2</th><th>Co</th><th>Pm25</th><th>Pm10</th><th>Ozon</th><th>Dust Particles</th><th>Nitrogen Dioxide</th><th>Sulphur Dioxide</th><th>Longitute</th><th>Latitute</th><th>Date</th>" 
-             response.data.forEach((env: IEnvironment) => {
-            result += "<tr><td>" + env.oxygen + "</td><td>" + env.co2 + "</td><td>" + env.co + "</td><td>" + env.pm25 + "</td><td>" + env.pm10 + "</td><td>" + env.ozon + "</td><td>" + env.dustParticles + "</td><td>" + env.nitrogenDioxide + "</td><td>" + env.sulphurDioxide + "</td><td>" + env.longitude + "</td><td>" + env.latitude + "</td><td>" + env.dateTimeInfo + "</td></tr>"
-        });
-        result += "</table>"
-        envOutput.innerHTML = result;
-    })
-    .catch (function (error: AxiosError): void {
-        if (error.response) {
-            envOutput.innerHTML = error;}
-        else {envOutput.innerHTML = error;}
-   })
-}
-
-
- }*/
