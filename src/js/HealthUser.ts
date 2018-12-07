@@ -13,13 +13,23 @@ interface IHealth {
     dateTimeInfo: Date;
 }
 
+var itemID = JSON.parse(localStorage.getItem('id'));
+
+let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
+
+if (itemID === 6){
+    extra.hidden = false;
+}
+else
+    extra.hidden = true;
+
+
 //Health chart
 google.charts.load('current', { packages: ['corechart', 'line'] });
 google.charts.setOnLoadCallback(healthDataChart);
 
 function healthDataChart(): void {
 
-    var itemID = JSON.parse(localStorage.getItem('id'));
 
     let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + "/health";
 
