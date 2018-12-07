@@ -36,17 +36,33 @@ function AddUser(): void {
     let myTypeOfUser: string = "U";
 
     if (pass.value === pass2.value) {
-        let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users";
-        axios.post<IUser>(uri, { firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, age: myage, gender: mygender, typeOfUser: myTypeOfUser })
+        let uri: string = "http://localhost:65403/api/users/" + myusername;
+        axios.get(uri)
+        .then(function (response: AxiosResponse): void{
+            console.log(response.data);
+            if(response.data === true){
+                let uri2: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users";
+        
+                axios.post<IUser>(uri2, { firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, age: myage, gender: mygender, typeOfUser: myTypeOfUser })
             .then(function (response: AxiosResponse) {
                 console.log(response.status + " " + response.statusText);
-                alert("User " + userName + " was succesfully added");
+                alert("User " + userName.value + " was succesfully added");
                 window.location.href = 'LoginPage.html';
             })
             .catch((error: AxiosError) => {
                 alert("Check if all values are correct!");
                 console.log(error);
             })
+            }
+            if(response.data === false)
+            alert("Username already exists!");
+
+        })
+        .catch(function (error: AxiosError): void {
+            console.log(error);
+        })
+
+        
     }
     else alert("password does not match!")
 }
