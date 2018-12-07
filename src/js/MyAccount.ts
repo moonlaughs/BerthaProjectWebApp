@@ -54,7 +54,7 @@ function updateCredentials(): void {
     let myyear: number = Number(year.value);
     let mygender: string = gender.value;
     let myusername: string = username.value;
-    let mypassword: string = pass1.value;
+    let mypassword: string = password.value;
     let myTypeOfTheUser: string = "U";
 
     

@@ -73,32 +73,43 @@
     </ul>
   </nav>
 
-    <!-- Updating credentials -->
-    <div class="col" style="position:fixed; width: 100%; margin-top: 320px; z-index: 2; top: 0">
-      <h2>Edit profile</h2>
-      <input id="firstName" placeholder="Type first name" class="form-control"/>
-      <br>
-      <input id="lastName" placeholder="Type last name" class="form-control"/>
-      <br>
-      <input id="year" placeholder="Type year" class="form-control"/>
-      <br>
-      <input id="gender" placeholder="Type gender" class="form-control"/>
-      <br>
-      <input id="username" placeholder="Type username" class="form-control"/>
-      <br>
-      <input id="password" type ="password" placeholder="Current password" class="form-control" />
-      <br>
-      <input id="pass1" type="password" placeholder="Type old password" class="form-control" />
-      <br>
-      <input id="pass2" type="password" placeholder="Confirm new password" class="form-control" />
-      <br>
-      <button id="confirmButton" class="btn-expand-lg btn btn-primary">Save changes</button>
 
-      <!-- Delete starts here -->
-      <button id="delUser" class="btn-expand-lg btn btn-danger">Deactive account</button>
-      <div id="delOutput"></div>
+  <div class="row" style=" margin-top: 300px;">
+    <!-- This is for column 1 -->
+    <div class="col" style="margin-top:20px;">
+      <img src="https://www.unitedwayofthedesert.org/sites/unitedwayofthedesert.org/files/Health%20heart.png" height="200px"
+        width="200px" style="float:top; margin-left: 30%;">
+        <br>
+      <h1 style="text-align: center">About us</h1> 
+      <p style="text-align: center">Bertha application is a place where you are able to keep track of your daily activity.By adding data here
+        you are able to see an understandable view for your health and the environment around you. </p>
+    </div>
+    <!-- This is for column 2 -->
+    <div class="col" style="margin-top:20px;">
+          <!-- Updating credentials-->
+          <h2>Edit profile</h2>
+          <form>
+              <div class="form-group row">
+                  <div class="col-sm-6">
+          <input id="firstName" placeholder="Type first name" class="form-control" style="margin-bottom: 5px;"/>
+          <input id="lastName" placeholder="Type last name" class="form-control" style="margin-bottom: 5px;" />
+          <input id="year" placeholder="Type year" class="form-control" style="margin-bottom: 5px;" />
+          <input id="gender" placeholder="Type gender" class="form-control" style="margin-bottom: 5px;"/>
+          <input id="username" placeholder="Type username" class="form-control" style="margin-bottom: 5px;" />
+          <input id="password" type="password" placeholder="Current password" class="form-control" style="margin-bottom: 5px;" />
+          <input id="pass1" type="password" placeholder="Type old password" class="form-control" style="margin-bottom: 5px;" />
+          <input id="pass2" type="password" placeholder="Confirm new password" class="form-control" style="margin-bottom: 5px;" />
+          <button id="confirmButton" class="btn-expand-lg btn btn-primary" style="margin-bottom: 5px; width: 185px;">Save changes</button>
+          <!-- Delete starts here -->
+          <button id="delUser" class="btn-expand-lg btn btn-danger" style="margin-bottom: 5px; width: 185px;">Deactive account</button>
+          <div id="delOutput"></div>
+          </form>
     </div>
   </div>
+        </div> 
+      </div>
+    </div>
+  </div> 
 
   <script src="MyAccount.bundle.js"></script>
 </body>
