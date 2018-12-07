@@ -31,22 +31,13 @@ interface IEnvironment{
     dateTimeInfo: Date;
 }
 
-//environment chart
+// GET that displays the environmental data in a chart
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(envDataChart);
 
 var itemID = JSON.parse(localStorage.getItem('id'));
 
 function envDataChart(): void {
-    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
-    url = window.location.href;
-    var params: any = {},
-    match;
-    while(match = regex.exec(url)) {
-        params[match[1]] = match[2];
-    }*/
-
-
     let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + "/environment";
 
     axios.get<IEnvironment>(uri)
@@ -84,9 +75,9 @@ function envDataChart(): void {
         var options = {
           hAxis: {
             title: 'Date',
-            titleColor: 'white',
+            titleColor: 'black',
             textStyle: {
-              color: 'white',
+              color: 'black',
               fontSize: 16,
               italic: true,
               bold: true
@@ -94,16 +85,16 @@ function envDataChart(): void {
           },
           vAxis: {
             title: 'Environment', 
-            titleColor: 'white',
+            titleColor: 'black',
             textStyle: {
-              color: 'white',
+              color: 'black',
               fontSize: 16,
               italic: true, 
               bold: true
             }
           },
           titleTextStyle: {
-            color: 'white',
+            color: 'black',
             fontSize: 16,
             italic: true,
             bold: true
@@ -111,12 +102,13 @@ function envDataChart(): void {
           backgroundColor: 'transparent', 
           curveLine: 'none',
           lineWidth: 3,
-          legendTextStyle: {color: 'white', italic: true}
+          legendTextStyle: {color: 'black', italic: true}
         };
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
         chart.draw(data, options);
     })
 
+    // GET that displays the environmental data in a simple table 
     let envOutput: HTMLDivElement = <HTMLDivElement>document.getElementById("envOutput");
 
     axios.get<IEnvironment>(uri)

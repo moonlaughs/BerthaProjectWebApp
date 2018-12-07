@@ -7,29 +7,25 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-      table {
-       border-collapse: collapse;}
-       th {
-      background-color:#0B3861;
-      color: white;} 
-      table, th, td {
-      border: 1px solid #071019;
-      margin: 10px;
-      font-size: 12px;} 
-      
-      th, td {
-       padding: 7px;}
-      tr:nth-child(even) {background-color:#0B243B; opacity: 70%;} 
-    </style>
+      ::-webkit-scrollbar {display: none;}
+  </style>
 </head>
 
 <body>
   <h1>Bertha project</h1>
   
   <h2>Show a user by id</h2>
-  <input id="selInput" placeholder="Type user's id"/>
-  <button id="showSelectedUser">Show me user</button>
-  <div id="selOutput"></div>
+  <div style="margin-top: 30px;">  
+    <input class="inputD" id="selInput" placeholder="Type user's id"/>
+    <button id="showSelectedUser">Show me the user</button>
+    <button id="goBackButton">GO BACK</button>
+  </div>
+
+  <!-- Output field for the user's first and last name -->
+  <div style="margin-top: 20px; width:100%; text-align: center;" id="selOutput"></div>
+
+  <!-- The frame where the health/environmental chart & table for the specific user will appear -->
+  <iframe id="iFrame" style="margin-top: 30px; height:700px; width:100%; visibility: hidden;"></iframe> 
   
 <script src="index.bundle.js"></script>
 </body>

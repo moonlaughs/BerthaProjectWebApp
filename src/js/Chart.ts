@@ -24,6 +24,7 @@ interface IHealth {
     dateTimeInfo : Date;
 }
 
+// GET that displays the health data in a chart
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(healthDataChart);
 
@@ -68,9 +69,9 @@ google.charts.setOnLoadCallback(healthDataChart);
             var options = {
                 hAxis: {
                     title: 'Date',
-                    titleColor: 'white',
+                    titleColor: 'black',
                     textStyle: {
-                      color: 'white',
+                      color: 'black',
                       fontSize: 16,
                       italic: true,
                       bold: true
@@ -78,16 +79,16 @@ google.charts.setOnLoadCallback(healthDataChart);
                   },
                   vAxis: {
                     title: 'Health', 
-                    titleColor: 'white',
+                    titleColor: 'black',
                     textStyle: {
-                      color: 'white',
+                      color: 'black',
                       fontSize: 16,
                       italic: true, 
                       bold: true
                     }
                   },
                   titleTextStyle: {
-                    color: 'white',
+                    color: 'black',
                     fontSize: 16,
                     italic: true,
                     bold: true
@@ -96,13 +97,14 @@ google.charts.setOnLoadCallback(healthDataChart);
                   curveType: 'none',
                   lineWidth: 3,
                   dataColor: 'white',
-                  legendTextStyle: {color: 'white', italic: true}
+                  legendTextStyle: {color: 'black', italic: true}
             };
       
             var chart = new google.visualization.LineChart(document.getElementById('curve_Chart'));
             chart.draw(data, options);
         })
-
+        
+        // GET that displays the health data in a simple table 
         let healthDataOutput : HTMLOutputElement = <HTMLOutputElement> document.getElementById("healthDataOutput");
 
         axios.get<IHealth>(uri)
