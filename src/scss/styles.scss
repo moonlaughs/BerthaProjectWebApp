@@ -95,9 +95,53 @@ button
     color: white;
     font-size: 10px;
   }
-  .iza{
-      background-color: pink;
+
+  .inputD 
+  {
+    width: 250px;
+    height: 30px;
+    padding-left: 5px;
+    border-radius: 5px;
+    border-color: lightgray;
+    margin-bottom: 10px;
   }
-  th{
-      color: brown;
+  
+  .h6D
+  {
+    text-align: left;
+    margin-left: 110px;
   }
+
+  .buttonD
+      {
+        background-color: #2FA4E7;
+        border-color: dimgray;
+        border-width:5px;
+        color: black;
+        width: 200px;
+      }
+
+  table {
+    border-collapse: collapse;
+    border: 1px solid rgb(100, 100, 100);
+    width: 1200px;
+    }
+    
+    th {
+    text-align: center;
+    height: 50px;
+    font-size: 18px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    background-color:rgb(12, 75, 134);
+    color: white;
+    border: 1px solid rgb(100, 100, 100);} 
+
+    td {
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid rgb(100, 100, 100);}
+
+    tr:nth-child(even) {background-color: rgb(69, 118, 167); opacity: 70%;} 
+    tr:hover {background-color: lightsteelblue;} 
+  
