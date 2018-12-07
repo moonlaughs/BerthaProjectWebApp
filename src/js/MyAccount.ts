@@ -9,7 +9,7 @@ interface IUser {
     lastName: string;
     userName: string;
     pass: string;
-    age: number;
+    year: number;
     gender: string;
     typeOfUser: string;
 }

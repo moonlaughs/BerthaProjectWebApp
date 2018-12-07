@@ -10,7 +10,7 @@ interface IUser {
     lastName: string;
     username: string;
     password: string;
-    age: number;
+    year: number;
     gender: string;
     typeOfUser: string;
     //some extra shit for pop up
@@ -35,7 +35,7 @@ let lastName:HTMLInputElement=<HTMLInputElement>document.getElementById("lastNam
 let userName:HTMLInputElement=<HTMLInputElement>document.getElementById("userName");
 let pass:HTMLInputElement=<HTMLInputElement>document.getElementById("pass");
 let pass2:HTMLInputElement=<HTMLInputElement>document.getElementById("pass2");
-let age:HTMLInputElement=<HTMLInputElement>document.getElementById("age");
+let year:HTMLInputElement=<HTMLInputElement>document.getElementById("year");
 let selectGender:HTMLInputElement=<HTMLInputElement>document.getElementById("selectGender");
 
 function login(): void {
@@ -72,13 +72,13 @@ function AddUserWithUsernameValidation(): void {
     let mylastname: string = lastName.value;
     let myusername: string = userName.value;
     let mypass: string = pass.value;
-    let myage: number = parseInt(age.value);
+    let myyear: number = parseInt(year.value);
     let mygender: string = selectGender.value;
     let myTypeOfUser: string = "U";
 
     if (pass.value === pass2.value) {
         let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users";
-        axios.post<IUser>(uri, { firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, age: myage, gender: mygender, typeOfUser: myTypeOfUser })
+        axios.post<IUser>(uri, { firstName: myfirstname, lastName: mylastname, userName: myusername, pass: mypass, year: myyear, gender: mygender, typeOfUser: myTypeOfUser })
             .then(function (response: AxiosResponse) {
                 console.log(response.status + " " + response.statusText);
                 if(response.data === true){
