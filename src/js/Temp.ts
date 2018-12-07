@@ -4,9 +4,9 @@ import axios, {
 } from "../../node_modules/axios";
 
 interface ITemp {
-  dt: Date;
   id: number;
   temp: number;
+  dt: Date;
 }
 
 google.charts.load('current', { packages: ['corechart', 'line'] });
@@ -15,7 +15,7 @@ google.charts.setOnLoadCallback(tempDataChart);
 function tempDataChart(): void {
   let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/Temperature";
 
-  axios.get<ITemp>(uri)
+  axios.get<ITemp[]>(uri)
     .then(function (response: AxiosResponse<ITemp[]>): void {
       console.log(response);
       var data = new google.visualization.DataTable();
@@ -26,9 +26,9 @@ function tempDataChart(): void {
         return new Date(Date.parse(a.dt.toString())).getTime() - new Date(Date.parse(b.dt.toString())).getTime();
       });
 
-      var newarr = [response.data[0]];
+      var newarr = [response.data[2]];
       for (var i = 1; i < response.data.length; i++) {
-        if (response.data[i].dateTimeInfo.toString().split('T')[0] != response.data[i - 1].dateTimeInfo.toString().split('T')[0]) {
+        if (response.data[i].dateTimeInfo.toString().split('T')[2] != response.data[i - 1].dateTimeInfo.toString().split('T')[2]) {
           newarr.push(response.data[i]);
         }
       }
@@ -65,18 +65,20 @@ function tempDataChart(): void {
                 italic: true,
                 bold: true
               },
-              backgroundColor: 'transparent', 
+              backgroundColor: 'white', 
               curveType: 'none',
               lineWidth: 3,
               dataColor: 'white',
               legendTextStyle: {color: 'white', italic: true}
         };
   
-        var chart = new google.visualization.LineChart(document.getElementById('curve-Chart'));
+        var chart = new google.visualization.LineChart(document.getElementById("curve-Chart"));
             chart.draw(data, options);
     }); 
     })
 }
+
+
 
 let outPut: HTMLOutputElement = <HTMLOutputElement> document.getElementById("outPut");
 
@@ -97,3 +99,4 @@ axios.get<ITemp>(uri)
                outPut.innerHTML = error;}
            else {outPut.innerHTML = error;}
         })
+
