@@ -9,51 +9,38 @@ interface IUser {
     lastName: string;
     userName: string;
     pass: string;
-    age: number;
+    year: number;
     gender: string;
     typeOfUser: string;
 }
 
-interface IHealth {
-    id: number;
-    bloodPressureUpper: number;
-    bloodPressureDown: number;
-    heartRate: number;
-    temperature: number;
-    userId: number;
-    dateTimeInfo: Date;
-}
-
-interface IEnvironment{
-    id : number;
-    oxygen: number;
-    co2: number;
-    co: number;
-    pm25: number;
-    pm10: number;
-    ozon: number;
-    dustParticles: number;
-    nitrogenDioxide: number;
-    sulphurDioxide: number;
-    longitude: number;
-    latitude: number;
-    userId: number;
-    dateTimeInfo: Date;
-}
-
 let showSelectedUser: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showSelectedUser");
 showSelectedUser.addEventListener("click", showUser);
+let goBackButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("goBackButton");
+goBackButton.addEventListener("click", goBack);
+let iFrame : HTMLIFrameElement = <HTMLIFrameElement> document.getElementById("iFrame");
 
+var itemID = JSON.parse(localStorage.getItem('id'));
+
+// Makes the frame navigate to a specific user's health data
 function goToEnvChartAndTable(id: Number): void {
 
-    window.location.href = 'EnvironmentUser.html?id=' + id;
+    iFrame.style.visibility = "visible";
+    iFrame.contentWindow.location.href = 'EnvironmentUser.html?id=' + id;
 }
 
+// Makes the frame navigate to a specific user's environmental data
 function goToHealthChartAndTable(id: Number): void {
-
-    window.location.href = 'Chart.html?id=' + id;
+    iFrame.style.visibility = "visible";
+    iFrame.contentWindow.location.href = 'Chart.html?id=' + id;
 }
 
+// Navigates back to the scientist's user profile
+function goBack(): void {
+    window.location.href = 'HealthUser.html?id=' + itemID;
+}
+
+// GET - shows a specific user's first and last name when scientist searches for a user by id
 function showUser(): void {
     let selOutput: HTMLDivElement = <HTMLDivElement>document.getElementById("selOutput");
     let selInput: HTMLInputElement = <HTMLInputElement>document.getElementById("selInput");
@@ -63,7 +50,7 @@ function showUser(): void {
     axios.get<IUser>(uri)
         .then(function (response: AxiosResponse<IUser>): void {
             console.log(response.data);
-            let result: string = response.data.firstName + " " + response.data.lastName + " " + `<button id='goToHealthChartAndTable${response.data.id}'>Check Health Data</button>` + " " + `<button id='goToEnvChartAndTable${response.data.id}'>Check ENV Data</button>`;
+            let result: string = "User: " + response.data.firstName + " " + response.data.lastName + '\xa0\xa0\xa0\xa0\xa0\xa0' + `<button class='buttonD' id='goToHealthChartAndTable${response.data.id}' href=''Chart.html?id=' + id'>Check Health Data</button>` + '\xa0\xa0' + `<button class='buttonD' id='goToEnvChartAndTable${response.data.id}'>Check Environmental Data</button>`;
             selOutput.innerHTML = result;
               let gotoHealthChartAndTableButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`goToHealthChartAndTable${response.data.id}`);
               gotoHealthChartAndTableButton.addEventListener("click", function () {

@@ -3,17 +3,6 @@ import axios, {
     AxiosError
 } from "../../node_modules/axios";
 
-interface IUser {
-    id: number;
-    firstName: string;
-    lastName: string;
-    userName: string;
-    pass: string;
-    age: number;
-    gender: string;
-    typeOfUser: string;
-}
-
 interface IHealth {
     id: number;
     bloodPressureUpper: number;
@@ -31,7 +20,18 @@ interface IUserId
     lastName:string;
 }
 
-//health chart
+var itemID = JSON.parse(localStorage.getItem('id'));
+
+let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
+
+if (itemID === 6){
+    extra.hidden = false;
+}
+else
+    extra.hidden = true;
+
+
+//Health chart
 google.charts.load('current', { packages: ['corechart', 'line'] });
 google.charts.setOnLoadCallback(healthDataChart);
 
@@ -71,15 +71,7 @@ userDiv.innerHTML = itemID.toString();
 
 
 function healthDataChart(): void {
-    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
-        url = window.location.href;
-    var params: any = {},
-        match;
-    while (match = regex.exec(url)) {
-        params[match[1]] = match[2];
-    }*/
 
-    var itemID = JSON.parse(localStorage.getItem('id'));
 
     let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + "/health";
 
@@ -149,7 +141,7 @@ function healthDataChart(): void {
         })
 
 
-
+    // GET that displays the data in a table whose rows/records can be selected
     let healthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("healthDataOutput");
 
         axios.get<IHealth[]>(uri)
@@ -168,9 +160,6 @@ function healthDataChart(): void {
         
             let trElement: HTMLTableRowElement = document.createElement<"tr">("tr");
         
-            let thElement: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            thElement.innerHTML = "User's Id";
-            trElement.appendChild(thElement);
             let th1Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
             th1Element.innerHTML = "Upper blood pressure";
             trElement.appendChild(th1Element);
@@ -201,10 +190,7 @@ function healthDataChart(): void {
 
 
                 let tr2Element: HTMLTableRowElement = document.createElement<"tr">("tr");
-        
-                let tdElement: HTMLTableDataCellElement = document.createElement<"td">("td");
-                tdElement.innerHTML = userHealthData.userId.toString();
-                tr2Element.appendChild(tdElement);        
+
                 let td2Element: HTMLTableDataCellElement = document.createElement<"td">("td");
                 td2Element.innerHTML = userHealthData.bloodPressureUpper.toString();
                 tr2Element.appendChild(td2Element);
@@ -233,11 +219,12 @@ function healthDataChart(): void {
                     ctemperatureInput.defaultValue = userHealthData.temperature.toString();
                     deleteButton.addEventListener("click", () => {
                         deleteHealthRecord(userHealthData.id); });
-                    tr2Element.style.backgroundColor = "red"; 
+                    tr2Element.style.backgroundColor = "lightslategray"; 
                 });
             });
         }    
-       
+    
+    // Variables and method for Update    
     let cHealthDataInput: Number;
     let cuserIdInput: Number;
     let cbloodPressureUInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cbloodPressureUInput");
@@ -261,8 +248,8 @@ function healthDataChart(): void {
         let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health/" + id;
         axios.put<IHealth>(uri, { bloodPressureUpper: bPUI, bloodPressureDown: bPDI, heartRate: hRI, temperature: tI, userId: uII, dateTimeInfo: dTII })
             .then((response: AxiosResponse) => {
-                changeHealthDataOutput.innerHTML = "Response: " + response.status + " " + response.statusText + "\t";
-                changeHealthDataOutput.innerHTML += "The health data is changed!"
+                alert("The health record has been successfully updated!");
+                refreshPage();
             })
             .catch(function (error: AxiosError): void {
                 if (error.response) {
@@ -272,7 +259,7 @@ function healthDataChart(): void {
             })
     }
 
-
+// Variables and method for Add
 let bloodPressureUInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureUInput");
 let bloodPressureDInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureDInput");
 let heartRateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("heartRateInput");
@@ -293,8 +280,8 @@ function addHealthData(): void {
     let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health";
     axios.post<IHealth>(uri, { bloodPressureUpper: bPUI, bloodPressureDown: bPDI, heartRate: hRI, temperature: tI, userId: uII, dateTimeInfo: dTII })
         .then((response: AxiosResponse) => {
-            addHealthDataOutput.innerHTML = "Response: " + response.status + " " + response.statusText + "\t";
-            addHealthDataOutput.innerHTML += "The health data is added!"
+            alert("The health data record has beeen successfully added!");
+            refreshPage();
         })
         .catch(function (error: AxiosError): void {
             if (error.response) {
@@ -304,6 +291,12 @@ function addHealthData(): void {
         })
 }
 
+// Method used in Add, Update and Delete that refreshes the data
+function refreshPage(){
+    window.location.reload();
+}
+
+// Variables and method for Delete    
 let deleteButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deletebutton");
 let delHealthDataOutput : HTMLDivElement = <HTMLDivElement> document.getElementById("delHealthDataOutput");
 
@@ -313,8 +306,8 @@ function deleteHealthRecord(id: number): void {
     axios.delete<IHealth>(deleteUri)
         .then(function(response: AxiosResponse<IHealth>) : void {
            console.log(JSON.stringify(response));
-           delHealthDataOutput.innerHTML = response.status + " " + response.statusText;
-           delHealthDataOutput.innerHTML += "Please refresh to see the changes!";
+           alert("The record was successfully removed!");
+           refreshPage();
         })
         .catch(function(error : AxiosError) : void {
             if (error.response){
