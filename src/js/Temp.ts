@@ -19,31 +19,31 @@ function tempDataChart(): void {
     .then(function (response: AxiosResponse<ITemp[]>): void {
       console.log(response);
       var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
+      data.addColumn('string', 'X');
       data.addColumn('number', 'temp');
 
       response.data.sort((a: ITemp, b: ITemp) => {
         return new Date(Date.parse(a.dt.toString())).getTime() - new Date(Date.parse(b.dt.toString())).getTime();
       });
 
-      var newarr = [response.data[2]];
+      var newarr = [response.data[0]];
       for (var i = 1; i < response.data.length; i++) {
-        if (response.data[i].dateTimeInfo.toString().split('T')[2] != response.data[i - 1].dateTimeInfo.toString().split('T')[2]) {
+        if (response.data[i].dt.toString().split('T')[0] != response.data[i - 1].dt.toString().split('T')[0]) {
           newarr.push(response.data[i]);
         }
       }
 
       newarr.forEach((temp: ITemp) => {
         data.addRows([
-            [temp.dt.toString().split('T')[0], temp.temp]
+            [temp.dt.toString().split('T')[2], temp.temp]
           ]);
         
           var options = {
             hAxis: {
                 title: 'Date',
-                titleColor: 'white',
+                titleColor: 'black',
                 textStyle: {
-                  color: 'white',
+                  color: 'black',
                   fontSize: 16,
                   italic: true,
                   bold: true
@@ -51,25 +51,25 @@ function tempDataChart(): void {
               },
               vAxis: {
                 title: 'Health', 
-                titleColor: 'white',
+                titleColor: 'black',
                 textStyle: {
-                  color: 'white',
+                  color: 'black',
                   fontSize: 16,
                   italic: true, 
                   bold: true
                 }
               },
               titleTextStyle: {
-                color: 'white',
+                color: 'black',
                 fontSize: 16,
                 italic: true,
                 bold: true
               },
-              backgroundColor: 'white', 
+              backgroundColor: 'transparent', 
               curveType: 'none',
               lineWidth: 3,
-              dataColor: 'white',
-              legendTextStyle: {color: 'white', italic: true}
+              dataColor: 'black',
+              legendTextStyle: {color: 'black', italic: true}
         };
   
         var chart = new google.visualization.LineChart(document.getElementById("curve-Chart"));
