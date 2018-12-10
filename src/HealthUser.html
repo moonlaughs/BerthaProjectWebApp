@@ -45,6 +45,7 @@
       }
 
       ::-webkit-scrollbar {display: none;}
+
     </style>
 
 </head>
@@ -122,11 +123,19 @@
       <li class="nav-item">
         <a class="nav-link" href="Temp.html">Temperature</a>
       </li>
-      <li class="nav-item">
+      <!----<li class="nav-item">
         <a class="nav-link" href="MyAccount.html">My account</a>
-      </li>
+      </li>--->
       <li id="extra" class="nav-item">
         <a class="nav-link" href="index.htm">Users data</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My account</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="MyAccount.html">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="LogInPage.html">Log out</a>
+        </div>
       </li>
     </ul>
   </nav>
