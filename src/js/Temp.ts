@@ -9,6 +9,41 @@ interface ITemp {
   dt: Date;
 }
 
+interface IUserId {
+  id: number;
+  typeOfUser: string;
+  firstName: string;
+  lastName: string;
+}
+
+var itemID = JSON.parse(localStorage.getItem('id'));
+let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
+extra.hidden = true;
+
+let userDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
+let typeDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("divTypeOfUser");
+var itemID = JSON.parse(localStorage.getItem('id'));
+let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+axios.get<IUserId>(uri)
+  .then(function (response: AxiosResponse<IUserId[]>): void {
+      console.log(response.data);
+      userDiv.innerHTML = response.data.firstName + " " + response.data.lastName;
+      
+      if (response.data.typeOfUser === "S") {
+          extra.hidden = false;
+          typeDiv.innerHTML = "scientist";
+      }
+      else{
+          extra.hidden = true;
+          typeDiv.innerHTML = "user";
+      }
+
+  })
+  .catch(function (error: AxiosError): void {
+      console.log(error);
+  });
+
+
 google.charts.load('current', { packages: ['corechart', 'line'] });
 google.charts.setOnLoadCallback(tempDataChart);
 
@@ -35,7 +70,7 @@ function tempDataChart(): void {
 
       newarr.forEach((temp: ITemp) => {
         data.addRows([
-            [temp.dt.toString().split('T')[2], temp.temp]
+            [temp.dt.toString().split('T')[0], temp.temp]
           ]);
         
           var options = {
@@ -80,7 +115,7 @@ function tempDataChart(): void {
 
 
 
-let outPut: HTMLOutputElement = <HTMLOutputElement> document.getElementById("outPut");
+/*let outPut: HTMLOutputElement = <HTMLOutputElement> document.getElementById("outPut");
 
 let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/Temperature";
 
@@ -98,5 +133,5 @@ axios.get<ITemp>(uri)
            if (error.response) {
                outPut.innerHTML = error;}
            else {outPut.innerHTML = error;}
-        })
+        })*/
 

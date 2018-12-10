@@ -16,7 +16,41 @@ interface IUser {
 
 let Info: HTMLOutputElement = <HTMLOutputElement>document.getElementById("Info");
 
+interface IUserId {
+    id: number;
+    typeOfUser: string;
+    firstName: string;
+    lastName: string;
+}
+
 var itemID = JSON.parse(localStorage.getItem('id'));
+let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
+extra.hidden = true;
+
+let userDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
+let typeDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("divTypeOfUser");
+var itemID = JSON.parse(localStorage.getItem('id'));
+let uri2: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+axios.get<IUserId>(uri2)
+    .then(function (response: AxiosResponse<IUserId[]>): void {
+        console.log(response.data);
+        userDiv.innerHTML = response.data.firstName + " " + response.data.lastName;
+        
+
+        if (response.data.typeOfUser === "S") {
+            extra.hidden = false;
+            typeDiv.innerHTML = "scientist";
+        }
+        else{
+            extra.hidden = true;
+            typeDiv.innerHTML = "user";
+        }
+
+    })
+    .catch(function (error: AxiosError): void {
+        console.log(error);
+    });
+
 
 
 let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
