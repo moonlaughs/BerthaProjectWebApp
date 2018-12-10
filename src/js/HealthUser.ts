@@ -12,6 +12,13 @@ interface IHealth {
     userId: number;
     dateTimeInfo: Date;
 }
+interface IUserId
+{
+    id:number;
+    typeOfUser:string;
+    firstName:string;
+    lastName:string;
+}
 
 var itemID = JSON.parse(localStorage.getItem('id'));
 
@@ -27,6 +34,41 @@ else
 //Health chart
 google.charts.load('current', { packages: ['corechart', 'line'] });
 google.charts.setOnLoadCallback(healthDataChart);
+
+//userId in the header
+function userIdOutput():void
+{
+    var itemID = JSON.parse(localStorage.getItem('id'));
+    let typeOfUser: HTMLOutputElement = <HTMLOutputElement>document.getElementById("typeOfUser");
+    let firstName: HTMLOutputElement = <HTMLOutputElement>document.getElementById("firstName");
+    let lastName: HTMLOutputElement = <HTMLOutputElement>document.getElementById("lastName");
+
+    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + typeOfUser + ": " + firstName + " " + lastName;
+    axios.get<IUserId>(uri)
+        .then(function (response:AxiosResponse<IUserId[]>): void 
+        {
+            console.log(response);
+        })
+    let userIdOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("userIdOutput");
+
+    axios.catch(function (error : AxiosError) : void {
+        if (error.response){
+            userIdOutput.innerHTML = error;}
+        else {userIdOutput.innerHTML = error;}
+    });
+}
+
+let userDiv : HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
+let userData : IUser;
+var itemID = JSON.parse(localStorage.getItem('id'));
+let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+userDiv.innerHTML = userData.userName.toString();
+userDiv.innerHTML = itemID.toString();
+//userDiv.innerHTML = "Sth";
+
+
+// end of userId in the header
+
 
 function healthDataChart(): void {
 
@@ -137,7 +179,16 @@ function healthDataChart(): void {
             tElement.appendChild(trElement)
         
             response.data.forEach((userHealthData: IHealth) => {
-                
+        
+                let userDiv : HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
+                //let userData : IUser;
+                //var itemID = JSON.parse(localStorage.getItem('id'));
+                //let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+                userDiv.innerHTML = userHealthData.userId.toString();
+                // userIdOutput
+
+
+
                 let tr2Element: HTMLTableRowElement = document.createElement<"tr">("tr");
 
                 let td2Element: HTMLTableDataCellElement = document.createElement<"td">("td");
