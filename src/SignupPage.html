@@ -18,7 +18,8 @@
        body
        {
            padding: 110px;
-           background-image: url("https://i.imgur.com/YxX8SSo.jpg");
+           /*background-image: url("https://i.imgur.com/YxX8SSo.jpg");*/
+           background-image: url("https://i.imgur.com/NZGLAvS.jpg");  
        }
        /*.form-group
        {
@@ -29,6 +30,23 @@
            top:90px;
         }
         */
+        .container
+        {
+            background-color: lavender;
+            width: 350px;
+            height: 430px;
+            border-radius: 5px;
+            opacity:0.80;
+            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+        }
+        input
+        {
+            opacity:0.8;
+        }
+        select
+        {
+            opacity:0.8;
+        }
     </style>
 </head>
 
@@ -79,29 +97,30 @@
         </fieldset>
       </form>
       --->
- 
-      <h1>SIGN UP</h1>
-    <input id="firstName" placeholder="Type first name" />
-    <br>
-    <input id="lastName" placeholder="Type last name" />
-    <br>
-    <input id="username" placeholder="Type username" />
-    <br>
-    <input id="pass" type="password" placeholder="Type password" />
-    <br>
-    <input id="pass2" placeholder="Confirm password" />
-    <br>
-    <input id="age" type="number" min="1970" max="2018" step="1" placeholder="Select year of birth" />
-    <br>
-    <select id="selectGender">
-        <option value="F">female</option>
-        <option value="M">male</option>
-    </select>
-    <br>
-    <button id="addButton" type="button" class="btn btn-primary">FINISH</button>
+    <div class="container">
+        <br>
+        <h1>SIGN UP</h1>
+        <br>
+        <input id="firstName" placeholder="Type first name" />
+        <br>
+        <input id="lastName" placeholder="Type last name" />
+        <br>
+        <input id="username" placeholder="Type username" />
+        <br>
+        <input id="pass" type="password" placeholder="Type password" />
+        <br>
+        <input id="pass2" placeholder="Confirm password" />
+        <br>
+        <input id="age" type="number" min="1970" max="2018" step="1" placeholder="Select year of birth" />
+        <br>
+        <select id="selectGender">
+            <option value="F">female</option>
+            <option value="M">male</option>
+        </select>
+        <br>
+        <button id="addButton" type="button" class="btn btn-primary">Finish</button>
 
-    
-
+    </div>
 
     <script src="Signup.bundle.js"></script>
 </body>
