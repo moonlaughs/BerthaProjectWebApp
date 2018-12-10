@@ -50,7 +50,7 @@ function showUser(): void {
     axios.get<IUser>(uri)
         .then(function (response: AxiosResponse<IUser>): void {
             console.log(response.data);
-            let result: string = "User: " + response.data.firstName + " " + response.data.lastName + '\xa0\xa0\xa0\xa0\xa0\xa0' + `<button class='buttonD' id='goToHealthChartAndTable${response.data.id}' href=''Chart.html?id=' + id'>Check Health Data</button>` + '\xa0\xa0' + `<button class='buttonD' id='goToEnvChartAndTable${response.data.id}'>Check Environmental Data</button>`;
+            let result: string = "User: " + response.data.firstName + " " + response.data.lastName + '\xa0\xa0\xa0\xa0\xa0\xa0' + `<button class='buttonD' id='goToHealthChartAndTable${response.data.id}' href=''Chart.html?id=' + id'>Check Health Data</button>` + '\xa0\xa0' + `<button class='buttonD' id='goToEnvChartAndTable${response.data.id}' href=''EnvironmentUser.html?id=' + id'>Check Environmental Data</button>`;
             selOutput.innerHTML = result;
               let gotoHealthChartAndTableButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`goToHealthChartAndTable${response.data.id}`);
               gotoHealthChartAndTableButton.addEventListener("click", function () {
