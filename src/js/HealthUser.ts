@@ -12,32 +12,46 @@ interface IHealth {
     userId: number;
     dateTimeInfo: Date;
 }
-interface IUserId
-{
-    id:number;
-    typeOfUser:string;
-    firstName:string;
-    lastName:string;
+interface IUserId {
+    id: number;
+    typeOfUser: string;
+    firstName: string;
+    lastName: string;
 }
 
 var itemID = JSON.parse(localStorage.getItem('id'));
 
-let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
+let userDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
+let typeDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("divTypeOfUser");
+var itemID = JSON.parse(localStorage.getItem('id'));
+let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+axios.get<IUserId>(uri)
+    .then(function (response: AxiosResponse<IUserId[]>): void {
+        console.log(response.data);
+        userDiv.innerHTML = response.data.firstName + " " + response.data.lastName;
+        
+        let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
 
-if (itemID === 6){
-    extra.hidden = false;
-}
-else
-    extra.hidden = true;
+        if (response.data.typeOfUser === "S") {
+            extra.hidden = false;
+            typeDiv.innerHTML = "scientist";
+        }
+        else{
+            extra.hidden = true;
+            typeDiv.innerHTML = "user";
+        }
 
+    })
+    .catch(function (error: AxiosError): void {
+        console.log(error);
+    });
 
 //Health chart
 google.charts.load('current', { packages: ['corechart', 'line'] });
 google.charts.setOnLoadCallback(healthDataChart);
 
 //userId in the header
-function userIdOutput():void
-{
+function userIdOutput(): void {
     var itemID = JSON.parse(localStorage.getItem('id'));
     let typeOfUser: HTMLOutputElement = <HTMLOutputElement>document.getElementById("typeOfUser");
     let firstName: HTMLOutputElement = <HTMLOutputElement>document.getElementById("firstName");
@@ -45,25 +59,24 @@ function userIdOutput():void
 
     let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + typeOfUser + ": " + firstName + " " + lastName;
     axios.get<IUserId>(uri)
-        .then(function (response:AxiosResponse<IUserId[]>): void 
-        {
+        .then(function (response: AxiosResponse<IUserId[]>): void {
             console.log(response);
         })
     let userIdOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("userIdOutput");
 
-    axios.catch(function (error : AxiosError) : void {
-        if (error.response){
-            userIdOutput.innerHTML = error;}
-        else {userIdOutput.innerHTML = error;}
+    axios.catch(function (error: AxiosError): void {
+        if (error.response) {
+            userIdOutput.innerHTML = error;
+        }
+        else { userIdOutput.innerHTML = error; }
     });
 }
 
-let userDiv : HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
-let userData : IUser;
-var itemID = JSON.parse(localStorage.getItem('id'));
-let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
-userDiv.innerHTML = userData.userName.toString();
-userDiv.innerHTML = itemID.toString();
+
+
+
+/*userDiv.innerHTML = userData.userName.toString();
+userDiv.innerHTML = itemID.toString();*/ //Megs...
 //userDiv.innerHTML = "Sth";
 
 
@@ -144,86 +157,88 @@ function healthDataChart(): void {
     // GET that displays the data in a table whose rows/records can be selected
     let healthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("healthDataOutput");
 
-        axios.get<IHealth[]>(uri)
-       .then(function(response : AxiosResponse<IHealth[]>) : void {
-       addToDOM(response)
-    })
-    .catch(function(error : AxiosError) : void {
-        if (error.response){
-            healthDataOutput.innerHTML = error;}
-        else {healthDataOutput.innerHTML = error;}
-    })
+    axios.get<IHealth[]>(uri)
+        .then(function (response: AxiosResponse<IHealth[]>): void {
+            addToDOM(response)
+        })
+        .catch(function (error: AxiosError): void {
+            if (error.response) {
+                healthDataOutput.innerHTML = error;
+            }
+            else { healthDataOutput.innerHTML = error; }
+        })
 
-        function addToDOM(response: AxiosResponse<IHealth[]>): void {
-            let tElement: HTMLTableElement = document.createElement<"table">("table");
-            healthDataOutput.appendChild(tElement)
-        
-            let trElement: HTMLTableRowElement = document.createElement<"tr">("tr");
-        
-            let th1Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th1Element.innerHTML = "Upper blood pressure";
-            trElement.appendChild(th1Element);
-            let th2Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th2Element.innerHTML = "Down blood pressure";
-            trElement.appendChild(th2Element);
-            let th3Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th3Element.innerHTML = "Heart rate";
-            trElement.appendChild(th3Element);
-            let th4Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th4Element.innerHTML = "Temperature";
-            trElement.appendChild(th4Element);
-            let th5Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th5Element.innerHTML = "Date";
-            trElement.appendChild(th5Element);
-        
-            tElement.appendChild(trElement)
-        
-            response.data.forEach((userHealthData: IHealth) => {
-        
-                let userDiv : HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
-                //let userData : IUser;
-                //var itemID = JSON.parse(localStorage.getItem('id'));
-                //let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
-                userDiv.innerHTML = userHealthData.userId.toString();
-                // userIdOutput
+    function addToDOM(response: AxiosResponse<IHealth[]>): void {
+        let tElement: HTMLTableElement = document.createElement<"table">("table");
+        healthDataOutput.appendChild(tElement)
+
+        let trElement: HTMLTableRowElement = document.createElement<"tr">("tr");
+
+        let th1Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th1Element.innerHTML = "Upper blood pressure";
+        trElement.appendChild(th1Element);
+        let th2Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th2Element.innerHTML = "Down blood pressure";
+        trElement.appendChild(th2Element);
+        let th3Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th3Element.innerHTML = "Heart rate";
+        trElement.appendChild(th3Element);
+        let th4Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th4Element.innerHTML = "Temperature";
+        trElement.appendChild(th4Element);
+        let th5Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
+        th5Element.innerHTML = "Date";
+        trElement.appendChild(th5Element);
+
+        tElement.appendChild(trElement)
+
+        response.data.forEach((userHealthData: IHealth) => {
+
+            //let userDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
+            //let userData : IUser;
+            //var itemID = JSON.parse(localStorage.getItem('id'));
+            //let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+            //userDiv.innerHTML = userHealthData.userId.toString();
+            // userIdOutput
 
 
 
-                let tr2Element: HTMLTableRowElement = document.createElement<"tr">("tr");
+            let tr2Element: HTMLTableRowElement = document.createElement<"tr">("tr");
 
-                let td2Element: HTMLTableDataCellElement = document.createElement<"td">("td");
-                td2Element.innerHTML = userHealthData.bloodPressureUpper.toString();
-                tr2Element.appendChild(td2Element);
-                let td3Element: HTMLTableDataCellElement = document.createElement<"td">("td");
-                td3Element.innerHTML = userHealthData.bloodPressureDown.toString();
-                tr2Element.appendChild(td3Element);
-                let td4Element: HTMLTableDataCellElement = document.createElement<"td">("td");
-                td4Element.innerHTML = userHealthData.heartRate.toString();
-                tr2Element.appendChild(td4Element);
-                let td5Element: HTMLTableDataCellElement = document.createElement<"td">("td");
-                td5Element.innerHTML = userHealthData.temperature.toString();
-                tr2Element.appendChild(td5Element);
-                let td6Element: HTMLTableDataCellElement = document.createElement<"td">("td");
-                td6Element.innerHTML = userHealthData.dateTimeInfo.toString();
-                tr2Element.appendChild(td6Element);
-        
-                tElement.appendChild(tr2Element)
-        
-                tr2Element.addEventListener("click", () => {
-                    console.log(userHealthData.userId);
-                    cHealthDataInput = userHealthData.id;
-                    cuserIdInput = userHealthData.userId;
-                    cbloodPressureUInput.defaultValue = userHealthData.bloodPressureUpper.toString();
-                    cbloodPressureDInput.defaultValue = userHealthData.bloodPressureDown.toString();
-                    cheartRateInput.defaultValue = userHealthData.heartRate.toString();
-                    ctemperatureInput.defaultValue = userHealthData.temperature.toString();
-                    deleteButton.addEventListener("click", () => {
-                        deleteHealthRecord(userHealthData.id); });
-                    tr2Element.style.backgroundColor = "lightslategray"; 
+            let td2Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td2Element.innerHTML = userHealthData.bloodPressureUpper.toString();
+            tr2Element.appendChild(td2Element);
+            let td3Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td3Element.innerHTML = userHealthData.bloodPressureDown.toString();
+            tr2Element.appendChild(td3Element);
+            let td4Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td4Element.innerHTML = userHealthData.heartRate.toString();
+            tr2Element.appendChild(td4Element);
+            let td5Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td5Element.innerHTML = userHealthData.temperature.toString();
+            tr2Element.appendChild(td5Element);
+            let td6Element: HTMLTableDataCellElement = document.createElement<"td">("td");
+            td6Element.innerHTML = userHealthData.dateTimeInfo.toString();
+            tr2Element.appendChild(td6Element);
+
+            tElement.appendChild(tr2Element)
+
+            tr2Element.addEventListener("click", () => {
+                console.log(userHealthData.userId);
+                cHealthDataInput = userHealthData.id;
+                cuserIdInput = userHealthData.userId;
+                cbloodPressureUInput.defaultValue = userHealthData.bloodPressureUpper.toString();
+                cbloodPressureDInput.defaultValue = userHealthData.bloodPressureDown.toString();
+                cheartRateInput.defaultValue = userHealthData.heartRate.toString();
+                ctemperatureInput.defaultValue = userHealthData.temperature.toString();
+                deleteButton.addEventListener("click", () => {
+                    deleteHealthRecord(userHealthData.id);
                 });
+                tr2Element.style.backgroundColor = "lightslategray";
             });
-        }    
-    
+        });
+    }
+
     // Variables and method for Update    
     let cHealthDataInput: Number;
     let cuserIdInput: Number;
@@ -259,61 +274,62 @@ function healthDataChart(): void {
             })
     }
 
-// Variables and method for Add
-let bloodPressureUInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureUInput");
-let bloodPressureDInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureDInput");
-let heartRateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("heartRateInput");
-let temperatureInput: HTMLInputElement = <HTMLInputElement>document.getElementById("temperatureInput");
-let addHealthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("addHealthDataOutput");
-let addHealthDataButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addHealthDataButton");
-addHealthDataButton.addEventListener("click", addHealthData);
+    // Variables and method for Add
+    let bloodPressureUInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureUInput");
+    let bloodPressureDInput: HTMLInputElement = <HTMLInputElement>document.getElementById("bloodPressureDInput");
+    let heartRateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("heartRateInput");
+    let temperatureInput: HTMLInputElement = <HTMLInputElement>document.getElementById("temperatureInput");
+    let addHealthDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("addHealthDataOutput");
+    let addHealthDataButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addHealthDataButton");
+    addHealthDataButton.addEventListener("click", addHealthData);
 
-function addHealthData(): void {
-    let bPUI: number = Number(bloodPressureUInput.value);
-    let bPDI: number = Number(bloodPressureDInput.value);
-    let hRI: number = Number(heartRateInput.value);
-    let tI: number = Number(temperatureInput.value);
-    let uII: number = itemID;
-    let myDate: Date = new Date();
-    let hours: number = myDate.getHours();
-    let dTII: Date = new Date(myDate.getFullYear(), myDate.getMonth(), myDate.getDate(), (hours + 1), myDate.getMinutes(), myDate.getSeconds());
-    let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health";
-    axios.post<IHealth>(uri, { bloodPressureUpper: bPUI, bloodPressureDown: bPDI, heartRate: hRI, temperature: tI, userId: uII, dateTimeInfo: dTII })
-        .then((response: AxiosResponse) => {
-            alert("The health data record has beeen successfully added!");
-            refreshPage();
-        })
-        .catch(function (error: AxiosError): void {
-            if (error.response) {
-                addHealthDataOutput.innerHTML = error;
-            }
-            else { addHealthDataOutput.innerHTML = error; }
-        })
-}
+    function addHealthData(): void {
+        let bPUI: number = Number(bloodPressureUInput.value);
+        let bPDI: number = Number(bloodPressureDInput.value);
+        let hRI: number = Number(heartRateInput.value);
+        let tI: number = Number(temperatureInput.value);
+        let uII: number = itemID;
+        let myDate: Date = new Date();
+        let hours: number = myDate.getHours();
+        let dTII: Date = new Date(myDate.getFullYear(), myDate.getMonth(), myDate.getDate(), (hours + 1), myDate.getMinutes(), myDate.getSeconds());
+        let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health";
+        axios.post<IHealth>(uri, { bloodPressureUpper: bPUI, bloodPressureDown: bPDI, heartRate: hRI, temperature: tI, userId: uII, dateTimeInfo: dTII })
+            .then((response: AxiosResponse) => {
+                alert("The health data record has beeen successfully added!");
+                refreshPage();
+            })
+            .catch(function (error: AxiosError): void {
+                if (error.response) {
+                    addHealthDataOutput.innerHTML = error;
+                }
+                else { addHealthDataOutput.innerHTML = error; }
+            })
+    }
 
-// Method used in Add, Update and Delete that refreshes the data
-function refreshPage(){
-    window.location.reload();
-}
+    // Method used in Add, Update and Delete that refreshes the data
+    function refreshPage() {
+        window.location.reload();
+    }
 
-// Variables and method for Delete    
-let deleteButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deletebutton");
-let delHealthDataOutput : HTMLDivElement = <HTMLDivElement> document.getElementById("delHealthDataOutput");
+    // Variables and method for Delete    
+    let deleteButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deletebutton");
+    let delHealthDataOutput: HTMLDivElement = <HTMLDivElement>document.getElementById("delHealthDataOutput");
 
-function deleteHealthRecord(id: number): void {
-    let deleteUri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health/" + id;
-    console.log("DELETE " + deleteUri);
-    axios.delete<IHealth>(deleteUri)
-        .then(function(response: AxiosResponse<IHealth>) : void {
-           console.log(JSON.stringify(response));
-           alert("The record was successfully removed!");
-           refreshPage();
-        })
-        .catch(function(error : AxiosError) : void {
-            if (error.response){
-                delHealthDataOutput.innerHTML = error;}
-            else {delHealthDataOutput.innerHTML = error;}
-        })
-}
+    function deleteHealthRecord(id: number): void {
+        let deleteUri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/health/" + id;
+        console.log("DELETE " + deleteUri);
+        axios.delete<IHealth>(deleteUri)
+            .then(function (response: AxiosResponse<IHealth>): void {
+                console.log(JSON.stringify(response));
+                alert("The record was successfully removed!");
+                refreshPage();
+            })
+            .catch(function (error: AxiosError): void {
+                if (error.response) {
+                    delHealthDataOutput.innerHTML = error;
+                }
+                else { delHealthDataOutput.innerHTML = error; }
+            })
+    }
 
 }
