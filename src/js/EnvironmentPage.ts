@@ -32,6 +32,8 @@ interface IUserId {
 }
 
 var itemID = JSON.parse(localStorage.getItem('id'));
+let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
+extra.hidden = true;
 
 let userDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
 let typeDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("divTypeOfUser");
@@ -42,7 +44,6 @@ axios.get<IUserId>(uri)
         console.log(response.data);
         userDiv.innerHTML = response.data.firstName + " " + response.data.lastName;
         
-        let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
 
         if (response.data.typeOfUser === "S") {
             extra.hidden = false;
