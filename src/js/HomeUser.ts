@@ -2,21 +2,9 @@ let myFrame: HTMLFrameElement = <HTMLFrameElement>document.getElementById("myFra
 let healthButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("healthButton");
 let envirnmentButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("environmentButton");
 
-//healthButton.addEventListener("click", getHealth);
-//envirnmentButton.addEventListener("click", getEnvironment);
-
 var itemID = JSON.parse(localStorage.getItem('id'));
 
 function getHealth(): void {
-
-    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
-            url = window.location.href;
-        var params: any = {},
-            match;
-        while (match = regex.exec(url)) {
-            params[match[1]] = match[2];*/
-        
-
 
         let uri: string = "HealthUser.html?id=" + itemID;
         myFrame.src = uri;
