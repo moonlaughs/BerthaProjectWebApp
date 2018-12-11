@@ -73,17 +73,6 @@ function userIdOutput(): void {
     });
 }
 
-
-
-
-/*userDiv.innerHTML = userData.userName.toString();
-userDiv.innerHTML = itemID.toString();*/ //Megs...
-//userDiv.innerHTML = "Sth";
-
-
-// end of userId in the header
-
-
 function healthDataChart(): void {
 
 
@@ -194,15 +183,6 @@ function healthDataChart(): void {
         tElement.appendChild(trElement)
 
         response.data.forEach((userHealthData: IHealth) => {
-
-            //let userDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
-            //let userData : IUser;
-            //var itemID = JSON.parse(localStorage.getItem('id'));
-            //let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
-            //userDiv.innerHTML = userHealthData.userId.toString();
-            // userIdOutput
-
-
 
             let tr2Element: HTMLTableRowElement = document.createElement<"tr">("tr");
 
@@ -335,4 +315,3 @@ function healthDataChart(): void {
 
 }
 
-// drop down 
