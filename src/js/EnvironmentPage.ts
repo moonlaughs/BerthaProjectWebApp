@@ -24,17 +24,43 @@ interface IEnvironment{
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(envDataChart);
 
+interface IUserId {
+    id: number;
+    typeOfUser: string;
+    firstName: string;
+    lastName: string;
+}
+
 var itemID = JSON.parse(localStorage.getItem('id'));
+let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
+extra.hidden = true;
+
+let userDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
+let typeDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("divTypeOfUser");
+var itemID = JSON.parse(localStorage.getItem('id'));
+let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+axios.get<IUserId>(uri)
+    .then(function (response: AxiosResponse<IUserId[]>): void {
+        console.log(response.data);
+        userDiv.innerHTML = response.data.firstName + " " + response.data.lastName;
+        
+
+        if (response.data.typeOfUser === "S") {
+            extra.hidden = false;
+            typeDiv.innerHTML = "scientist";
+        }
+        else{
+            extra.hidden = true;
+            typeDiv.innerHTML = "user";
+        }
+
+    })
+    .catch(function (error: AxiosError): void {
+        console.log(error);
+    });
+
 
 function envDataChart(): void {
-    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
-       url = window.location.href;
-    var params: any = {},
-       match;
-    while(match = regex.exec(url)) {
-       params[match[1]] = match[2];
-    }*/
-
 
     let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID + "/environment";
 
@@ -73,9 +99,9 @@ function envDataChart(): void {
           var options = {
                 hAxis: {
                    title: 'Date',
-                   titleColor: 'white',
+                   titleColor: 'black',
                    textStyle: {
-                     color: 'white',
+                     color: 'black',
                      fontSize: 16,
                      italic: true,
                      bold: true
@@ -83,7 +109,7 @@ function envDataChart(): void {
                 },
                 vAxis: {
                    title: 'Environment', 
-                   titleColor: 'white',
+                   titleColor: 'black',
                    textStyle: {
                      color: 'white',
                      fontSize: 16,
@@ -92,7 +118,7 @@ function envDataChart(): void {
                     }
                 },
                 titleTextStyle: {
-                    color: 'white',
+                    color: 'black',
                     fontSize: 16,
                     italic: true,
                     bold: true
@@ -100,12 +126,13 @@ function envDataChart(): void {
                 backgroundColor: 'transparent', 
                 curveLine: 'none',
                 lineWidth: 3,
-                legendTextStyle: {color: 'white', italic: true}
+                legendTextStyle: {color: 'black', italic: true}
             };
           var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
           chart.draw(data, options);
         })
  
+        // GET that displays the data in a table whose rows/records can be selected
         let envDataOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("envDataOutput");
 
         axios.get<IEnvironment[]>(uri)
@@ -124,23 +151,20 @@ function envDataChart(): void {
         
             let trElement: HTMLTableRowElement = document.createElement<"tr">("tr");
         
-            let thElement: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            thElement.innerHTML = "User's Id";
-            trElement.appendChild(thElement);
             let th1Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
             th1Element.innerHTML = "Oxygen";
             trElement.appendChild(th1Element);
             let th2Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th2Element.innerHTML = "co2";
+            th2Element.innerHTML = "CO2";
             trElement.appendChild(th2Element);
             let th3Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th3Element.innerHTML = "co";
+            th3Element.innerHTML = "CO";
             trElement.appendChild(th3Element);
             let th4Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th4Element.innerHTML = "pm25";
+            th4Element.innerHTML = "PM25";
             trElement.appendChild(th4Element);
             let th5Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
-            th5Element.innerHTML = "pm10";
+            th5Element.innerHTML = "PM10";
             trElement.appendChild(th5Element);
             let th6Element: HTMLTableHeaderCellElement = document.createElement<"th">("th");
             th6Element.innerHTML = "Ozon";
@@ -169,10 +193,7 @@ function envDataChart(): void {
             response.data.forEach((userEnvData: IEnvironment) => {
         
                 let tr2Element: HTMLTableRowElement = document.createElement<"tr">("tr");
-        
-                let tdElement: HTMLTableDataCellElement = document.createElement<"td">("td");
-                tdElement.innerHTML = userEnvData.userId.toString();
-                tr2Element.appendChild(tdElement);        
+                         
                 let td2Element: HTMLTableDataCellElement = document.createElement<"td">("td");
                 td2Element.innerHTML = userEnvData.oxygen.toString();
                 tr2Element.appendChild(td2Element);
@@ -229,11 +250,12 @@ function envDataChart(): void {
                     cLatInput.defaultValue = userEnvData.latitude.toString();
                     deleteButton.addEventListener("click", () => {
                         deleteEnvDataRecord(userEnvData.id); });
-                    tr2Element.style.backgroundColor = "red"; 
+                    tr2Element.style.backgroundColor = "lightslategray"; 
                 });
             });
         } 
 
+    // Variables and method for Update     
     let cEnvDataInput: Number;
     let cuserIdInput: Number;
     let cOxygenInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cOxygenInput");
@@ -271,8 +293,8 @@ function envDataChart(): void {
         let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/environment/" + id;
         axios.put<IEnvironment>(uri, { oxygen: oxygenI, co2: co2I, co: coI, pm25: pm25I, pm10: pm10I, ozon: ozonI, dustParticles: dustPI, nitrogenDioxide: nitDioI, sulphurDioxide: sulDioI, longitude: longI, latitude: latI, userId: uII, dateTimeInfo: dTII })
             .then((response: AxiosResponse) => {
-                changeEnvDataOutput.innerHTML = "Response: " + response.status + " " + response.statusText + "\t";
-                changeEnvDataOutput.innerHTML += "The env data is changed!"
+                alert("The environmental data record has beeen successfully updated!");
+                refreshPage();
             })
             .catch(function (error: AxiosError): void {
                 if (error.response) {
@@ -282,6 +304,7 @@ function envDataChart(): void {
             })
     }
 
+// Variables and method for Add
 let oxygenInput: HTMLInputElement = <HTMLInputElement>document.getElementById("co2Input");
 let co2Input: HTMLInputElement = <HTMLInputElement>document.getElementById("co2Input");
 let coInput: HTMLInputElement = <HTMLInputElement>document.getElementById("coInput");
@@ -317,8 +340,8 @@ function addEnvData(): void{
         
     axios.post<IEnvironment>(uri,{oxygen: addOx, co2: addCo2, co: addCo, pm25: addPm25, pm10: addPm10, ozon: addOz, dustParticles: addDP, nitrogenDioxide: addND, sulphurDioxide: addSD, longitude: addLon, latitude: addLan, userId: addUI, dateTimeInfo: dTII})
         .then ((response:AxiosResponse) => {
-                addEnvDataOutput.innerHTML = "Response: " + response.status + " " + response.statusText + "\t";
-                addEnvDataOutput.innerHTML += "The environment data is added!"
+            alert("The health data record has beeen successfully added!");
+            refreshPage();
         })
         .catch(function(error : AxiosError) : void {
             if (error.response){
@@ -328,7 +351,12 @@ function addEnvData(): void{
     
 }    
 
+// Method used in Add, Update and Delete that refreshes the data
+function refreshPage(){
+    window.location.reload();
+}
 
+// Variables and method for Delete 
 let deleteButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deletebutton");
 let delEnvDataOutput : HTMLDivElement = <HTMLDivElement> document.getElementById("delEnvDataOutput");
 
@@ -338,8 +366,8 @@ function deleteEnvDataRecord(id: number): void {
       axios.delete<IEnvironment>(deleteUri)
         .then(function(response: AxiosResponse<IEnvironment>) : void {
            console.log(JSON.stringify(response));
-           delEnvDataOutput.innerHTML = response.status + " " + response.statusText;
-           delEnvDataOutput.innerHTML += "Please refresh to see the changes!";
+           alert("The health data record has beeen successfully removed!");
+           refreshPage();
         })
         .catch(function(error : AxiosError) : void {
             if (error.response){
