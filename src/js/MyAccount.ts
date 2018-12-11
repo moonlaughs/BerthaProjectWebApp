@@ -54,20 +54,7 @@ axios.get<IUserId>(uri2)
 
 
 let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
-/*
-axios.get<IUser>(uri)
-    .then(function (response: AxiosResponse<IUser>): void {
-        console.log(response.data);
-        let result: string = "<table><tr><th>First Name</th><td>" + response.data.firstName + "</td></tr><tr><th>Last Name</th><td>" + response.data.lastName + "</td><tr><th>Username</th><td>" + response.data.userName + "</td><tr><th>Age</th><td>" + response.data.age + "</td><tr><th>Gender</th><td>" + response.data.gender + "</td></table>";
-        Info.innerHTML = result;
-    })
-    .catch(function (error: AxiosError): void {
-        if (error.response) {
-            Info.innerHTML = error;
-        }
-        else { Info.innerHTML = error; }
-    });
-*/
+
 
 let confirmButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("confirmButton");
 confirmButton.addEventListener("click", updateCredentials);

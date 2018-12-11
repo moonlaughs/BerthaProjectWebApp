@@ -2,21 +2,9 @@ let myFrame: HTMLFrameElement = <HTMLFrameElement>document.getElementById("myFra
 let healthButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("healthButton");
 let envirnmentButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("environmentButton");
 
-//healthButton.addEventListener("click", getHealth);
-//envirnmentButton.addEventListener("click", getEnvironment);
-
 var itemID = JSON.parse(localStorage.getItem('id'));
 
 function getHealth(): void {
-
-    /*var regex = /[?&]([^=#]+)=([^&#]*)/g,
-            url = window.location.href;
-        var params: any = {},
-            match;
-        while (match = regex.exec(url)) {
-            params[match[1]] = match[2];*/
-        
-
 
         let uri: string = "HealthUser.html?id=" + itemID;
         myFrame.src = uri;
@@ -38,6 +26,10 @@ function getEnvironment(): void {
         myFrame.src = uri;
 }}
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a658e1b6280a57fd125fad764f737fe4bbb3a6e
 function getAccount(): void {
 
     var regex = /[?&]([^=#]+)=([^&#]*)/g,
@@ -52,3 +44,8 @@ function getAccount(): void {
         let uri: string = "MyAccount.html?id=" + params.id;
         myFrame.src = uri;
 }}
+<<<<<<< HEAD
+=======
+>>>>>>> 791c05fd6f33096f427c4b6f3c9d9ad7d3186db0
+=======
+>>>>>>> 4a658e1b6280a57fd125fad764f737fe4bbb3a6e

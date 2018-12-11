@@ -13,7 +13,7 @@ interface IUser {
     year: number;
     gender: string;
     typeOfUser: string;
-    //some extra shit for pop up
+    //some extra stuff for pop up
     userName:string;
     pass:string;
     pass2:string;
