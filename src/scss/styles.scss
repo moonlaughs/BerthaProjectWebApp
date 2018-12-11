@@ -12,9 +12,6 @@ html, body{
   }
 body
 {
-   /* background-image: url("http://systemcall.info/wp-content/uploads/2012/09/blurred-1600x900-blue-stock-hd-9710.jpg");*/
-   /* background-image: url("https://i.imgur.com/dOIVNNm.jpg"); */
-
     background-color: lavender;
     background-attachment:scroll;
     background-size:cover;
@@ -38,7 +35,6 @@ select.option
 
 button
  {
-    /*background-color:#033C73;*/
     background-color:#033C73;
     border: none;
     color: white;
@@ -126,6 +122,7 @@ button
     border-collapse: collapse;
     border: 1px solid rgb(100, 100, 100);
     width: 1200px;
+    text-align:center;
     }
     
     th {
@@ -145,4 +142,9 @@ button
 
     tr:nth-child(even) {background-color: rgb(69, 118, 167); opacity: 70%;} 
     tr:hover {background-color: lightsteelblue;} 
+
+    .carousel-caption
+    {
+     margin-bottom:100px;
+    }
   

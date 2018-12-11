@@ -113,25 +113,3 @@ function tempDataChart(): void {
     })
 }
 
-
-
-/*let outPut: HTMLOutputElement = <HTMLOutputElement> document.getElementById("outPut");
-
-let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/Temperature";
-
-
-axios.get<ITemp>(uri)
-           .then(function(response:AxiosResponse<ITemp[]>): void {
-              let result: string = "<table><tr><th>Id</th><th>Temperature</th><th>Date</th>" 
-                response.data.forEach((temp: ITemp) => {
-              result += "<tr><td>" + temp.id + "</td><td>" + temp.temp + "</td><td>" + temp.dt + "</td>";
-            });
-        result += "</table>"
-        outPut.innerHTML = result;
-        })
-        .catch (function (error: AxiosError): void {
-           if (error.response) {
-               outPut.innerHTML = error;}
-           else {outPut.innerHTML = error;}
-        })*/
-
