@@ -126,6 +126,7 @@ button
     border-collapse: collapse;
     border: 1px solid rgb(100, 100, 100);
     width: 1200px;
+    text-align:center;
     }
     
     th {
@@ -145,4 +146,9 @@ button
 
     tr:nth-child(even) {background-color: rgb(69, 118, 167); opacity: 70%;} 
     tr:hover {background-color: lightsteelblue;} 
+
+    .carousel-caption
+    {
+     margin-bottom:100px;
+    }
   

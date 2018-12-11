@@ -6,27 +6,7 @@
   <title>The Bertha Project</title>
   <link rel="stylesheet" type="text/css" href="bundle.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-  <style>
-
-    .carousel-caption
-    {
-     margin-bottom:100px;
-    }
-    table {
-       border-collapse: collapse;}
-       th {
-      background-color:#0B3861;
-      color: white;} 
-      table, th, td { 
-      border: 1px solid #071019;
-      margin: 10px;
-      font-size: 12px;}
-
-      th, td {
-       padding: 7px;}
-      tr:nth-child(even) {background-color: lavender; opacity: 70%;} 
-    </style>
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -37,12 +17,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <style> 
-      .modal-body
-      {
+  <style>
+      .modal-header
+     {
+        background-color: lavender;
+        opacity:0.5;
+        text-align:center;
+        /*height: 15px;*/
+        
+     }
+    .modal-body
+     {
+        background-color:lavender;
+        border-radius: 5px;
         margin-bottom:10px;
-        text-align: center;
-      }
+        text-align: center; 
+     }
 
       ::-webkit-scrollbar {display: none;}
 
@@ -123,9 +113,6 @@
       <li class="nav-item">
         <a class="nav-link" href="Temp.html">Temperature</a>
       </li>
-      <!----<li class="nav-item">
-        <a class="nav-link" href="MyAccount.html">My account</a>
-      </li>--->
       <li id="extra" class="nav-item">
         <a class="nav-link" href="index.htm">Users data</a>
       </li>
@@ -157,9 +144,9 @@
         <div class="modal-content">
 
           <!---modal header-->
-          <div style="background-color: lightslategray; border-bottom-color: darkgray; border-bottom-width: 3px;">
-            <h1 style="text-align: center;">Add health data</h1>
+          <div style="background-color:lavender; border-bottom-color: darkgray; border-bottom-width: 3px; border-radius:5px;">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 style="text-align: center;">Add health data</h1>
           </div>
           <!---modal body-->
           <div class="modal-body">
@@ -184,9 +171,9 @@
         <div class="modal-content">
 
           <!---modal header-->
-          <div style="background-color: lightslategray; border-bottom-color: darkgray; border-bottom-width: 3px;">
-            <h1 style="text-align: center">Update a health record</h1>
+          <div style="background-color: lavender; border-bottom-color: darkgray; border-bottom-width: 3px; border-radius:5px;">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 style="text-align: center">Update a health record</h1>
           </div>
           <!---modal body-->
           <div class="modal-body">
