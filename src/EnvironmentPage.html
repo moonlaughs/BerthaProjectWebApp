@@ -6,34 +6,29 @@
   <title>The Bertha Project</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="bundle.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
   <style>
-      table {
-       border-collapse: collapse;}
-       th {
-      background-color:#0B3861;
-      color: white;} 
-      table, th, td {
-      border: 1px solid #071019;
-      margin: 10px;
-      font-size: 12px;} 
-      
-      th, td {
-       padding: 7px;}
-      tr:nth-child(even) {background-color:#0B243B; opacity: 70%;} 
-    </style>
-    <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      .modal-body
+      {
+        margin-bottom:10px;
+        text-align: center;
+      }
 
-     <style>
-        ::-webkit-scrollbar {display: none;}
-    </style>
+      ::-webkit-scrollbar {display: none;}
+  </style>
 </head>
 <body style="background-color:lavender">
 <!-- Carousel starts here -->
@@ -46,14 +41,29 @@
     <div class="carousel-inner">
       <div class="item active">
         <img src="https://i1.wp.com/www.dargadgetz.com/wp-content/uploads/2018/03/Minimal-Mountain-Wallpaper-Blue-Dusk-Forest-4k-DarGadgetZ-1.jpg?resize=1500%2C500" alt="Nature" style="width: 100%; height: 300px;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>The Bertha Healthtracker</h1>
+          <h4><div id="userIdOutput"></div></h4>
+          <h4><div id="divTypeOfUser"></div></h4>
+      </div>
       </div>
   
       <div class="item">
         <img src="http://hdqwalls.com/wallpapers/bridge-in-forest-minimalist-4k-w7.jpg" alt="Nature" style="width: 100%; height: 300px;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>The Bertha Healthtracker</h1>
+          <h4><div id="userIdOutput"></div></h4>
+          <h4><div id="divTypeOfUser"></div></h4>
+      </div>
       </div>
   
       <div class="item">
         <img src="https://png.pngtree.com/thumb_back/fw800/back_pic/03/80/40/1657c3eef83e571.jpg" alt="Nature" style="width: 100%; height: 300px;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>The Bertha Healthtracker</h1>
+          <h4><div id="userIdOutput"></div></h4>
+          <h4><div id="divTypeOfUser"></div></h4>
+      </div>
       </div>
     </div>
   
@@ -80,52 +90,108 @@
             <li class="nav-item">
               <a class="nav-link" href="Temp.html">Temperature</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="MyAccount.html">My account</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="AboutUs.html">About us</a>
-            </li>
+            <li id="extra" class="nav-item">
+              <a class="nav-link" href="index.htm">Users data</a>
+          </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My account</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="MyAccount.html">Settings</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="LogInPage.html">Log out</a>
+              </div>
+            </li>            
           </ul>
       </nav>
 
+  <!-- Environmental data chart -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <div id="curve_chart" style="width: 100%; height: 500px;  margin-top: 300px;" ></div>
 
-  <div id="envDataOutput" style="width: 100%;"></div>
+  <!-- Environmental data table -->
+  <div id="envDataOutput" align="center" style="z-index: 2;"></div>
 
-  <h2>Add environmental data</h2>
-  <input id="oxygenInput" placeholder="Type oxygen"/>
-  <input id="co2Input" placeholder="Type co2"/>
-  <input id="coInput" placeholder="Type co"/>
-  <input id="pm25Input" placeholder="Type pm25"/>
-  <input id="pm10Input" placeholder="Type pm10"/>
-  <input id="ozonInput" placeholder="Type ozon"/>
-  <input id="dustPInput" placeholder="Type dust particles"/>
-  <input id="nitDioInput" placeholder="Type nitrogen dioxide"/>
-  <input id="sulDioInput" placeholder="Type sulphur dioxide"/>
-  <input id="longInput" placeholder="Type longitude"/>
-  <input id="latInput" placeholder="Type latitude"/>
-  <button id="addEnvDataButton">Add this environmental data</button>
-  <div id="addEnvDataOutput" style="width: 500px"></div>
+  <!-- Div element containing the three buttons: ADD, UPDATE and DELETE -->
+<div style="z-index: 3; width: 1210px; text-align: right; margin-top: 10px; margin-left: 350px; margin-bottom: 50px;">   
+  <button style="width: 100px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">ADD</button>
+               
+  <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
 
-  <h2>Change environmental data by id</h2>
-  <input id="cOxygenInput" placeholder="Type oxygen"/>
-  <input id="cCo2Input" placeholder="Type c02"/>
-  <input id="cCoInput" placeholder="Type co"/>
-  <input id="cPm25Input" placeholder="Type pm25"/>
-  <input id="cPm10Input" placeholder="Type pm10"/>
-  <input id="cOzonInput" placeholder="Type ozon"/>
-  <input id="cDustPInput" placeholder="Type dust particules"/>
-  <input id="cNitDioInput" placeholder="Type nitrogen dioxide"/>
-  <input id="cSulDioInput" placeholder="Type sulphur dioxide"/>
-  <input id="cLongInput" placeholder="Type longitude"/>
-  <input id="cLatInput" placeholder="Type latitude"/>
-  <button id="changeEnvDataButton">Change this health data</button>
-  <div id="changeEnvDataOutput" style="width: 500px"></div>
+              <!---modal header-->
+              <div style="background-color: lightslategray; border-bottom-color: darkgray; border-bottom-width: 3px;">
+                  <h1 style="text-align: center;">Add environmental data</h1>
+                  <button type="button" class="close" data-dismiss="modal" >&times;</button>
+              </div>
+              <!---modal body-->
+              <div class="modal-body">
+                     
+                      <input class="inputD" id="oxygenInput" placeholder="Type oxygen"/>
+                      <input class="inputD" id="co2Input" placeholder="Type co2"/>
+                      <input class="inputD" id="coInput" placeholder="Type co"/>
+                      <input class="inputD" id="pm25Input" placeholder="Type pm25"/>
+                      <input class="inputD" id="pm10Input" placeholder="Type pm10"/>
+                      <input class="inputD" id="ozonInput" placeholder="Type ozon"/>
+                      <input class="inputD" id="dustPInput" placeholder="Type dust particles"/>
+                      <input class="inputD" id="nitDioInput" placeholder="Type nitrogen dioxide"/>
+                      <input class="inputD" id="sulDioInput" placeholder="Type sulphur dioxide"/>
+                      <input class="inputD" id="longInput" placeholder="Type longitude"/>
+                      <input class="inputD" id="latInput" placeholder="Type latitude"/>
+                      <br>
+                      <button style="margin-top: 15px;" id="addEnvDataButton" type="button" class="btn btn-primary">Add this record</button>
+                      <div id="addEnvDataOutput" style="width: 500px; overflow:hidden"></div>
+              </div>
 
-  <button id="deletebutton">DELETE</button>
-  <div id="delEnvDataOutput"></div>
+           </div>
+         </div>
+  </div>
+
+  <button style="width: 100px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">UPDATE</button>
+               
+  <div class="modal" id="myModal2">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+              <!---modal header-->
+              <div style="background-color: lightslategray; border-bottom-color: darkgray; border-bottom-width: 3px;">
+                  <h1 style="text-align: center;">Update the environmental data</h1>
+                  <button type="button" class="close" data-dismiss="modal" >&times;</button>
+              </div>
+              <!---modal body-->
+              <div class="modal-body">
+                      <h6 class="h6D">Type new oxygen value:</h6>
+                      <input class="inputD" id="cOxygenInput" placeholder="Type oxygen"/>
+                      <h6 class="h6D">Type new CO2 value:</h6>
+                      <input class="inputD" id="cCo2Input" placeholder="Type co2"/>
+                      <h6 class="h6D">Type new CO value:</h6>
+                      <input class="inputD" id="cCoInput" placeholder="Type co"/>
+                      <h6 class="h6D">Type new PM25 value:</h6>
+                      <input class="inputD" id="cPm25Input" placeholder="Type pm25"/>
+                      <h6 class="h6D">Type new PM10 value:</h6>
+                      <input class="inputD" id="cPm10Input" placeholder="Type pm10"/>
+                      <h6 class="h6D">Type new ozon value:</h6>
+                      <input class="inputD" id="cOzonInput" placeholder="Type ozon"/>
+                      <h6 class="h6D">Type new dust particules value:</h6>
+                      <input class="inputD" id="cDustPInput" placeholder="Type dust particles"/>
+                      <h6 class="h6D">Type new nitrogen dioxide value:</h6>
+                      <input class="inputD" id="cNitDioInput" placeholder="Type nitrogen dioxide"/>
+                      <h6 class="h6D">Type new sulphur dioxide value:</h6>
+                      <input class="inputD" id="cSulDioInput" placeholder="Type sulphur dioxide"/>
+                      <h6 class="h6D">Type new longitude value:</h6>
+                      <input class="inputD" id="cLongInput" placeholder="Type longitude"/>
+                      <h6 class="h6D">Type new latitude value:</h6>
+                      <input class="inputD" id="cLatInput" placeholder="Type latitude"/>
+                      <br>
+                      <button style="margin-top: 15px;" id="changeEnvDataButton" type="button" class="btn btn-primary">Update this record</button>
+                      <div id="changeEnvDataOutput" style="width: 500px; overflow:hidden"></div>
+              </div>
+
+           </div>
+         </div>
+  </div>
+  <button style="width: 100px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" class="btn btn-primary" id="deletebutton">DELETE</button>
+</div>
 
   <script src="EnvironmentPage.bundle.js"></script>
 </body>

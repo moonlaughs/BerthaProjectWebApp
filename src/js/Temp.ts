@@ -4,10 +4,45 @@ import axios, {
 } from "../../node_modules/axios";
 
 interface ITemp {
-  dt: Date;
   id: number;
   temp: number;
+  dt: Date;
 }
+
+interface IUserId {
+  id: number;
+  typeOfUser: string;
+  firstName: string;
+  lastName: string;
+}
+
+var itemID = JSON.parse(localStorage.getItem('id'));
+let extra: HTMLLIElement = <HTMLLIElement>document.getElementById("extra");
+extra.hidden = true;
+
+let userDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("userIdOutput");
+let typeDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("divTypeOfUser");
+var itemID = JSON.parse(localStorage.getItem('id'));
+let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+axios.get<IUserId>(uri)
+  .then(function (response: AxiosResponse<IUserId[]>): void {
+      console.log(response.data);
+      userDiv.innerHTML = response.data.firstName + " " + response.data.lastName;
+      
+      if (response.data.typeOfUser === "S") {
+          extra.hidden = false;
+          typeDiv.innerHTML = "scientist";
+      }
+      else{
+          extra.hidden = true;
+          typeDiv.innerHTML = "user";
+      }
+
+  })
+  .catch(function (error: AxiosError): void {
+      console.log(error);
+  });
+
 
 google.charts.load('current', { packages: ['corechart', 'line'] });
 google.charts.setOnLoadCallback(tempDataChart);
@@ -15,11 +50,11 @@ google.charts.setOnLoadCallback(tempDataChart);
 function tempDataChart(): void {
   let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/Temperature";
 
-  axios.get<ITemp>(uri)
+  axios.get<ITemp[]>(uri)
     .then(function (response: AxiosResponse<ITemp[]>): void {
       console.log(response);
       var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
+      data.addColumn('string', 'X');
       data.addColumn('number', 'temp');
 
       response.data.sort((a: ITemp, b: ITemp) => {
@@ -28,7 +63,7 @@ function tempDataChart(): void {
 
       var newarr = [response.data[0]];
       for (var i = 1; i < response.data.length; i++) {
-        if (response.data[i].dateTimeInfo.toString().split('T')[0] != response.data[i - 1].dateTimeInfo.toString().split('T')[0]) {
+        if (response.data[i].dt.toString().split('T')[0] != response.data[i - 1].dt.toString().split('T')[0]) {
           newarr.push(response.data[i]);
         }
       }
@@ -41,9 +76,9 @@ function tempDataChart(): void {
           var options = {
             hAxis: {
                 title: 'Date',
-                titleColor: 'white',
+                titleColor: 'black',
                 textStyle: {
-                  color: 'white',
+                  color: 'black',
                   fontSize: 16,
                   italic: true,
                   bold: true
@@ -51,16 +86,16 @@ function tempDataChart(): void {
               },
               vAxis: {
                 title: 'Health', 
-                titleColor: 'white',
+                titleColor: 'black',
                 textStyle: {
-                  color: 'white',
+                  color: 'black',
                   fontSize: 16,
                   italic: true, 
                   bold: true
                 }
               },
               titleTextStyle: {
-                color: 'white',
+                color: 'black',
                 fontSize: 16,
                 italic: true,
                 bold: true
@@ -68,17 +103,19 @@ function tempDataChart(): void {
               backgroundColor: 'transparent', 
               curveType: 'none',
               lineWidth: 3,
-              dataColor: 'white',
-              legendTextStyle: {color: 'white', italic: true}
+              dataColor: 'black',
+              legendTextStyle: {color: 'black', italic: true}
         };
   
-        var chart = new google.visualization.LineChart(document.getElementById('curve-Chart'));
+        var chart = new google.visualization.LineChart(document.getElementById("curve-Chart"));
             chart.draw(data, options);
     }); 
     })
 }
 
-let outPut: HTMLOutputElement = <HTMLOutputElement> document.getElementById("outPut");
+
+
+/*let outPut: HTMLOutputElement = <HTMLOutputElement> document.getElementById("outPut");
 
 let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/Temperature";
 
@@ -96,4 +133,5 @@ axios.get<ITemp>(uri)
            if (error.response) {
                outPut.innerHTML = error;}
            else {outPut.innerHTML = error;}
-        })
+        })*/
+
