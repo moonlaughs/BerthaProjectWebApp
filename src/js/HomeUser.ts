@@ -26,6 +26,10 @@ function getEnvironment(): void {
         myFrame.src = uri;
 }}
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a658e1b6280a57fd125fad764f737fe4bbb3a6e
 function getAccount(): void {
 
     var regex = /[?&]([^=#]+)=([^&#]*)/g,
@@ -40,3 +44,8 @@ function getAccount(): void {
         let uri: string = "MyAccount.html?id=" + params.id;
         myFrame.src = uri;
 }}
+<<<<<<< HEAD
+=======
+>>>>>>> 791c05fd6f33096f427c4b6f3c9d9ad7d3186db0
+=======
+>>>>>>> 4a658e1b6280a57fd125fad764f737fe4bbb3a6e

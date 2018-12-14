@@ -68,19 +68,64 @@ let password: HTMLInputElement = <HTMLInputElement>document.getElementById("pass
 let pass1: HTMLInputElement = <HTMLInputElement>document.getElementById("pass1");
 let pass2: HTMLInputElement = <HTMLInputElement>document.getElementById("pass2");
 
+
+axios.get<IUser>(uri)
+    .then(function (response: AxiosResponse<IUser>): void {
+        console.log(response.data);
+        firstName.defaultValue = response.data.firstName;
+        lastName.defaultValue = response.data.lastName;
+        year.defaultValue = response.data.year;
+        //gender.defaultValue = response.data.gender;
+        username.defaultValue = response.data.userName;
+        password.defaultValue = response.data.pass;
+        if(response.data.gender === "F")
+            gender.defaultValue = "female"
+        else
+            gender.defaultValue = "male"
+    })
+    .catch(function (error: AxiosError): void {
+        if (error.response) {
+            Info.innerHTML = error;
+        }
+        else { Info.innerHTML = error; }
+    });
+
+
+
 function updateCredentials(): void {
 
     let myfirstName: string = firstName.value;
     let mylastName: string = lastName.value;
-    let myyear: number = Number(year.value);
-    let mygender: string = gender.value;
     let myusername: string = username.value;
     let mypassword: string = password.value;
-    let myTypeOfTheUser: string = "U";
+    let myyear: number = Number(year.value);
+    let mygender: string = "F";
+    if(gender.value === "female")
+    {
+        mygender = "F";
+    }   
+    if(gender.value === "male")
+    {
+        mygender = "M"
+    }
 
+
+    let myTypeOfTheUser: string = "U"; //wrong
+
+    //let uri2: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
+
+        axios.put<IUser>(uri, {firstName: myfirstName, lastName: mylastName, userName: myusername, pass: mypassword, year: myyear, gender: mygender, typeOfUser: myTypeOfTheUser})
+        .then((response: AxiosResponse<IUser>) => {
+            if(response.data.statusText === "OK")
+            alert("credentials were changed successfuly");
+        })
+        .catch(function(error: AxiosError): void{
+            console.log(error);
+            alert("something went wrong")
+        })
     
 
-    if (pass1.value === pass2.value) {
+    /*if (pass1.value === pass2.value) {
         let uri: string = "https://thebertharestconsumer20181031102055.azurewebsites.net/api/users/" + itemID;
 
         axios.put<IUser>(uri, {firstName: myfirstName, lastName: mylastName, userName: myusername, pass: mypassword, year: myyear, gender: mygender, typeOfUser: myTypeOfTheUser})
@@ -92,7 +137,7 @@ function updateCredentials(): void {
             console.log(error);
         })
     }
-    else alert("Password does not match!")
+    else alert("Password does not match!")*/
 }
 
 let delOutput: HTMLOutputElement = <HTMLOutputElement>document.getElementById("delOutput");
@@ -117,20 +162,4 @@ function delAccount(): void {
         })
 }
 
-axios.get<IUser>(uri)
-    .then(function (response: AxiosResponse<IUser>): void {
-        console.log(response.data);
-        firstName.defaultValue = response.data.firstName;
-        lastName.defaultValue = response.data.lastName;
-        year.defaultValue = response.data.year;
-        gender.defaultValue = response.data.gender;
-        username.defaultValue = response.data.userName;
-        password.defaultValue = response.data.pass;
-    })
-    .catch(function (error: AxiosError): void {
-        if (error.response) {
-            Info.innerHTML = error;
-        }
-        else { Info.innerHTML = error; }
-    });
 
